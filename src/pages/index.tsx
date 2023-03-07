@@ -8,9 +8,9 @@ const Home = () => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <main>
-      <h1 className="text-4xl font-bold">Welcome to Next.js!</h1>
-    </main>
+    <div>
+      <h1 className="title text-primary">Welcome to Next.js!</h1>
+    </div>
   </>
 );
 

@@ -1,6 +1,13 @@
 {
-  "extends": ["airbnb", "airbnb-typescript", "airbnb/hooks", "plugin:@next/next/recommended", "prettier"],
-  "plugins": ["simple-import-sort", "import"],
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@next/next/recommended",
+    "prettier",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": ["simple-import-sort", "import", "tailwindcss"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -20,6 +27,15 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   }
 }
