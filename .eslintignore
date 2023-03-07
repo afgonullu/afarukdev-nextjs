@@ -2,3 +2,5 @@ tailwind.config.js
 postcss.config.js
 next.config.js
 commitlint.config.js
+jest.config.js
+jest.setup.js
