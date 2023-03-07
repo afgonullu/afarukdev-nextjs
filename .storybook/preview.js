@@ -1,3 +1,5 @@
+import '../src/styles/globals.css';
+
 const BREAKPOINTS_INT = {
   xs: 375,
   sm: 600,
