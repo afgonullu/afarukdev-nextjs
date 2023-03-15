@@ -1,9 +1,11 @@
 import * as env from 'env-var';
 
-const NEXT_PUBLIC_STRING = env.get('NEXT_PUBLIC_STRING').required().asString();
+const CONTENT_API_URL = env.get('CONTENT_API_URL').required().asString();
+const CONTENT_API_KEY = env.get('CONTENT_API_KEY').required().asString();
 
 const config = {
-  NEXT_PUBLIC_STRING,
+  CONTENT_API_KEY,
+  CONTENT_API_URL,
 };
 
 export default config;
