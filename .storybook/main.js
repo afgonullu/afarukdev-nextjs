@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   "stories": [
     "../src/components/**/*.stories.@(js|jsx|ts|tsx)"
@@ -9,7 +11,9 @@ module.exports = {
   ],
   "framework": {
     "name": "@storybook/nextjs",
-    "options": {}
+    "options": {
+      nextConfigPath: path.resolve(__dirname, './next.config.js'),
+    }
   },
   "docs": {
     "autodocs": "tag"

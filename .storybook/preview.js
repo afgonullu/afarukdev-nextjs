@@ -1,4 +1,26 @@
+import { Besley, Bodoni_Moda, Jost } from 'next/font/google';
 import '../src/styles/globals.css';
+
+const jost = Jost({
+  variable: '--font-jost',
+  subsets: ['latin']
+});
+
+const besley = Besley({
+  variable: '--font-besley',
+  subsets: ['latin']
+});
+
+const bodoni = Bodoni_Moda({
+  variable: '--font-bodoni',
+  subsets: ['latin']
+});
+
+export const decorators = [(Story) => (
+  <main className={`${jost.variable} ${besley.variable} ${bodoni.variable}`}>
+    {Story()}
+  </main>
+),]
 
 const BREAKPOINTS_INT = {
   xs: 375,
