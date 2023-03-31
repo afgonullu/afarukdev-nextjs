@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 const colors = require('tailwindcss/colors')
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
@@ -53,10 +54,24 @@ module.exports = {
         serif: ['var(--font-besley)', ...fontFamily.serif],
         bodoni: ['var(--font-bodoni)', ...fontFamily.serif],
       },
+      textShadow: {
+        'hero-title': "-0.1rem 0rem #00CC99, 0rem 0.1rem #0066FF",
+        'hero-title-sm': "-0.05rem 0rem #00CC99, 0rem 0.05rem #0066FF",
+      }
     }
   },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
   ],
 }

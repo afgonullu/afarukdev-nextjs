@@ -10,7 +10,15 @@ const api = new GhostContentAPI({
 
 // TODO: Add a defaultBrowseConfig object to this service.
 
-const getLandingPosts = async () => {
+export interface ILandingContent {
+  hero: {
+    title: string;
+    greeting: string;
+    description: string;
+  };
+}
+
+const getLandingPosts = async (): Promise<ILandingContent> => {
   const landingPosts = await api.posts.browse({
     fields: ['id', 'title', 'slug'],
     limit: 'all',
@@ -18,7 +26,15 @@ const getLandingPosts = async () => {
     formats: ['html', 'plaintext'],
   });
 
-  return landingPosts;
+  const content = {
+    hero: {
+      title: landingPosts.find((post) => post.title === 'heroTitle')?.plaintext as string,
+      greeting: landingPosts.find((post) => post.title === 'heroGreeting')?.plaintext as string,
+      description: landingPosts.find((post) => post.title === 'heroDescription')?.plaintext as string,
+    },
+  };
+
+  return content;
 };
 
 const ghost = {
