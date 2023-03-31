@@ -1,6 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
 import type { ILandingContent } from '../../lib/services/ghost';
+import cn from '../../utils/cn';
 
 const heroStyles = {
   container: cva('flex w-full justify-end'),
@@ -15,12 +16,12 @@ export interface IHeroProps extends VariantProps<typeof heroStyles.hero> {
 }
 
 const Hero = ({ hero }: IHeroProps) => (
-  <div className={heroStyles.container()}>
-    <div className={heroStyles.hero()}>
-      <h1 className={heroStyles.greeting()}>{hero.greeting}</h1>
-      <h2 className={heroStyles.title()}>{hero.title}</h2>
+  <div className={cn(heroStyles.container())}>
+    <div className={cn(heroStyles.hero())}>
+      <h1 className={cn(heroStyles.greeting())}>{hero.greeting}</h1>
+      <h2 className={cn(heroStyles.title())}>{hero.title}</h2>
       <p>
-        <mark className={heroStyles.description()}>{hero.description}</mark>
+        <mark className={cn(heroStyles.description())}>{hero.description}</mark>
       </p>
       {/* ADD THE CTA BUTTONS */}
     </div>

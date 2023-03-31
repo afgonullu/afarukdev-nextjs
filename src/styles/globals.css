@@ -13,11 +13,16 @@
 
   p,
   li,
-  span {
+  span,
+  mark {
     @apply font-sans;
     font-size: 1rem;
     line-height: 1.5;
     letter-spacing: 0px;
+  }
+
+  mark {
+    @apply bg-gray-50 bg-opacity-50 leading-8;
   }
 
   a {
