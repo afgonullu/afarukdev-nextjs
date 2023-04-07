@@ -3,8 +3,8 @@ import GhostContentAPI from '@tryghost/content-api';
 import config from '../config';
 
 const api = new GhostContentAPI({
-  url: config.CONTENT_API_URL,
-  key: config.CONTENT_API_KEY,
+  url: config.url!,
+  key: config.key!,
   version: 'v5.0',
 });
 
