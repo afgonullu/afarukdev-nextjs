@@ -57,7 +57,16 @@ module.exports = {
       textShadow: {
         'hero-title': "-0.1rem 0rem #00CC99, 0rem 0.1rem #0066FF",
         'hero-title-sm': "-0.05rem 0rem #00CC99, 0rem 0.05rem #0066FF",
+      },
+      dropShadow: {
+        'navbar-svg-0': '-0.05rem 0rem 0rem #00CC99',
+        'navbar-svg-1': '0rem 0.05rem 0rem #0066FF',
       }
+    }
+  },
+  variants: {
+    extend: {
+      filter: ['hover', 'focus'],
     }
   },
   plugins: [
