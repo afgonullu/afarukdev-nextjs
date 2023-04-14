@@ -36,6 +36,7 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "arrow-body-style": "off"
   }
 }

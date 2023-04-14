@@ -25,7 +25,8 @@
     @apply bg-gray-50 bg-opacity-50 leading-8;
   }
 
-  a {
+  a,
+  button {
     @apply font-sans;
     font-size: 0.889rem;
     line-height: 1.5;
