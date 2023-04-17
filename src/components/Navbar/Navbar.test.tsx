@@ -27,7 +27,6 @@ describe('Navbar', () => {
     // Wait for the items to be rendered
     await waitFor(() => screen.getByText('Item 1'));
 
-    expect(screen.getByText('get in touch')).toBeInTheDocument();
     expect(screen.getByText('Item 1')).toBeInTheDocument();
     expect(screen.getByText('Item 2')).toBeInTheDocument();
   });

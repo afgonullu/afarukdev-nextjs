@@ -2,13 +2,15 @@ import { cva, VariantProps } from 'class-variance-authority';
 
 import type { ILandingContent } from '../../lib/services/ghost';
 import cn from '../../utils/cn';
+import Button from '../Button/Button';
 
 const heroStyles = {
   container: cva('flex w-full justify-end'),
-  hero: cva('flex flex-col justify-end'),
+  hero: cva('flex flex-col'),
   greeting: cva('text-base font-sans text-shadow-hero-title-sm mb-0 text-gray-50'),
   title: cva('text-shadow-hero-title text-gray-50 whitespace-pre-wrap'),
   description: cva('text-gray-900 whitespace-pre-wrap'),
+  ctaButtons: cva('flex justify-start items-center mt-2'),
 };
 
 export interface IHeroProps extends VariantProps<typeof heroStyles.hero> {
@@ -23,7 +25,10 @@ const Hero = ({ hero }: IHeroProps) => (
       <p>
         <mark className={cn(heroStyles.description())}>{hero.description}</mark>
       </p>
-      {/* ADD THE CTA BUTTONS */}
+        <div id="cta-buttons" className={cn(heroStyles.ctaButtons())}>
+          <Button intent="primary" onClick={() => {}} text="Learn More" />
+          <Button intent="accent" onClick={() => {}} text="Resume" />
+        </div>
     </div>
   </div>
 );

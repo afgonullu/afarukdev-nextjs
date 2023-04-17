@@ -2,6 +2,7 @@ import { cva } from 'class-variance-authority';
 import Image from 'next/image';
 
 import useNav from '../../hooks/useNav';
+import Button from '../Button/Button';
 
 const NavbarContainer = cva('flex justify-between w-full text-gray-50 h-20 mb-32 items-end', {
   variants: {
@@ -13,7 +14,7 @@ const NavbarContainer = cva('flex justify-between w-full text-gray-50 h-20 mb-32
   },
 });
 
-const NavbarButtonStyles = cva('ml-8 flex items-center', {
+const NavbarButtonStyles = cva('ml-8 flex items-center cursor-pointer', {
   variants: {
     intent: {
       even: 'hover:filter hover:drop-shadow-navbar-svg-0',
@@ -32,7 +33,7 @@ const Navbar = () => {
 
   return (
     <div className={NavbarContainer()}>
-      <div>get in touch</div>
+      <Button intent="outline" onClick={() => {}} text="Get in Touch" />
       <ul className="flex justify-between">
         {data.map((item, index) => (
           <li key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>

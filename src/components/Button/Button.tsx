@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
-const ButtonStyles = cva('w-48 h-10 flex justify-center items-center font-semibold tracking-tight rounded-full', {
+const ButtonStyles = cva('w-48 h-10 flex justify-center items-center font-semibold tracking-tight rounded-full mr-4', {
   variants: {
     intent: {
       primary: 'bg-primary text-gray-50 hover:bg-gray-900 hover:text-secondary cva-primary',
