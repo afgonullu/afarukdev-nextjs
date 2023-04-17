@@ -17,20 +17,22 @@ export interface IHeroProps extends VariantProps<typeof heroStyles.hero> {
   hero: ILandingContent['hero'];
 }
 
-const Hero = ({ hero }: IHeroProps) => (
-  <div className={cn(heroStyles.container())}>
-    <div className={cn(heroStyles.hero())}>
-      <h1 className={cn(heroStyles.greeting())}>{hero.greeting}</h1>
-      <h2 className={cn(heroStyles.title())}>{hero.title}</h2>
-      <p>
-        <mark className={cn(heroStyles.description())}>{hero.description}</mark>
-      </p>
+const Hero = ({ hero }: IHeroProps) => {
+  return (
+    <div className={cn(heroStyles.container())} style={{ height: 'calc(100vh - 13rem)' }}>
+      <div className={cn(heroStyles.hero())}>
+        <h1 className={cn(heroStyles.greeting())}>{hero.greeting}</h1>
+        <h2 className={cn(heroStyles.title())}>{hero.title}</h2>
+        <p>
+          <mark className={cn(heroStyles.description())}>{hero.description}</mark>
+        </p>
         <div id="cta-buttons" className={cn(heroStyles.ctaButtons())}>
           <Button intent="primary" onClick={() => {}} text="Learn More" />
           <Button intent="accent" onClick={() => {}} text="Resume" />
         </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Hero;

@@ -19,17 +19,17 @@ const Home = ({ content }: IHeroProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <>
         <Image
           src={landingBG}
           alt="Background of Landing Page"
           fill
           className="-z-10 h-screen object-cover object-right-top"
         />
-        <main className="flex w-full flex-col" style={{ height: '1500px' }}>
+        <main className="flex h-full w-full flex-col">
           <Hero hero={hero} />
         </main>
-      </div>
+      </>
     </>
   );
 };

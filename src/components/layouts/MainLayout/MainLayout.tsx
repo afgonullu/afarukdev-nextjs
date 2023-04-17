@@ -11,7 +11,7 @@ export interface IMainLayoutProps extends VariantProps<typeof MainLayoutStyles> 
 const MainLayout = ({ children }: IMainLayoutProps) => (
   <div className={MainLayoutStyles()}>
     <Navbar />
-    <main>{children}</main>
+    {children}
     <div>footer</div>
   </div>
 );

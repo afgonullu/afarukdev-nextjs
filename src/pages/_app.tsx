@@ -18,11 +18,11 @@ const bodoni = Bodoni_Moda({
 });
 
 const App = ({ Component, pageProps }: AppProps) => (
-  <main className={`${jost.variable} ${besley.variable} ${bodoni.variable}`}>
+  <div className={`${jost.variable} ${besley.variable} ${bodoni.variable}`}>
     <MainLayout>
       <Component {...pageProps} />
     </MainLayout>
-  </main>
+  </div>
 );
 
 export default App;
