@@ -3,8 +3,9 @@ import Image from 'next/image';
 
 import useNav from '../../hooks/useNav';
 import Button from '../Button/Button';
+import { paddingX } from '../layouts/consts';
 
-const NavbarContainer = cva('flex justify-between w-full text-gray-50 h-20 mb-32 items-end', {
+const NavbarContainer = cva(['flex justify-between w-full text-gray-50 h-20 mb-32 items-end', paddingX], {
   variants: {
     // intent: {
     //   primary: 'bg-orange-700 text-gray-50',
