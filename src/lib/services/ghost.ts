@@ -20,11 +20,13 @@ export interface ILandingContent {
 
 const getLandingPosts = async (): Promise<ILandingContent> => {
   const landingPosts = await api.posts.browse({
-    fields: ['id', 'title', 'slug'],
+    fields: ['id', 'title', 'slug', 'feature_image', 'plaintext', 'feature_image_alt', 'feature_image_caption'],
     limit: 'all',
     filter: 'primary_author:Landing',
     formats: ['html', 'plaintext'],
   });
+
+  console.log(landingPosts);
 
   const content = {
     hero: {
@@ -37,8 +39,38 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
   return content;
 };
 
+export const getPosts = async ({ featured }: { featured: boolean }) => {
+  const posts = await api.posts.browse({ limit: 'all', include: 'authors', filter: featured ? 'featured:true' : '' });
+
+  return posts;
+};
+
+export const getAuthors = async () => {
+  const authors = await api.authors.browse({ limit: 'all' });
+
+  return authors;
+};
+
+export const getPages = async () => {
+  const pages = await api.pages.browse({ limit: 'all' });
+
+  return pages;
+};
+
+export async function getSinglePost(postSlug: string) {
+  const post = api.posts.read({
+    slug: postSlug,
+  });
+
+  return post;
+}
+
 const ghost = {
   getLandingPosts,
+  getPosts,
+  getAuthors,
+  getPages,
+  getSinglePost,
 };
 
 export default ghost;

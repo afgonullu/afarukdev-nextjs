@@ -17,6 +17,7 @@ module.exports = {
       red: colors.red,
       blue: colors.sky,
       purple: colors.violet,
+      transparent: colors.transparent
     },
     extend: {
       colors: {
@@ -61,7 +62,16 @@ module.exports = {
       dropShadow: {
         'navbar-svg-0': '-0.05rem 0rem 0rem #00CC99',
         'navbar-svg-1': '0rem 0.05rem 0rem #0066FF',
-      }
+      },
+      keyframes: {
+        reveal: {
+          '0%': { clipPath: 'inset(0 100% 0 0)' },
+          '100%': { clipPath: 'inset(0 0% 0 0)' },
+        },
+      },
+      animation: {
+        reveal: 'reveal 0.4s forwards',
+      },
     }
   },
   variants: {
@@ -82,5 +92,14 @@ module.exports = {
         { values: theme('textShadow') }
       )
     }),
+    // function ({ addComponents }) {
+    //   const newComponents = {
+    //     '.reveal-text': {
+    //       animation: 'reveal 0.4s forwards',
+    //     },
+    //   };
+
+    //   addComponents(newComponents);
+    // }
   ],
 }

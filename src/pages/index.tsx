@@ -1,15 +1,18 @@
+import type { PostsOrPages } from '@tryghost/content-api';
 import Head from 'next/head';
 import Image from 'next/image';
 
 import landingBG from '../../public/images/landing_background.png';
+import Featured from '../components/Featured/Featured';
 import Hero from '../components/Hero/Hero';
 import ghost, { ILandingContent } from '../lib/services/ghost';
 
-interface IHeroProps {
+interface IHomeProps {
   content: ILandingContent;
+  posts: PostsOrPages;
 }
 
-const Home = ({ content }: IHeroProps) => {
+const Home = ({ content, posts }: IHomeProps) => {
   const { hero } = content;
   return (
     <>
@@ -28,6 +31,7 @@ const Home = ({ content }: IHeroProps) => {
         />
         <main className="flex h-full w-full flex-col">
           <Hero hero={hero} />
+          <Featured posts={posts} />
         </main>
       </>
     </>
@@ -36,10 +40,12 @@ const Home = ({ content }: IHeroProps) => {
 
 export const getStaticProps = async () => {
   const content = await ghost.getLandingPosts();
+  const posts = await ghost.getPosts({ featured: true });
 
   return {
     props: {
       content,
+      posts,
     },
   };
 };
