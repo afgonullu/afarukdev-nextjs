@@ -1,16 +1,18 @@
-import { cva } from 'class-variance-authority';
+import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import useNav from '../../hooks/useNav';
 import Button from '../Button/Button';
 import { paddingX } from '../layouts/consts';
 
-const NavbarContainer = cva(['flex justify-between w-full text-gray-50 h-20 mb-32 items-end', paddingX], {
+const NavbarContainer = cva(['flex justify-between w-full h-20 mb-32 items-end pb-2', paddingX], {
   variants: {
-    // intent: {
-    //   primary: 'bg-orange-700 text-gray-50',
-    //   secondary: 'bg-secondary text-red-400',
-    // },
+    intent: {
+      transparent: 'bg-transparent text-gray-50',
+      primary: 'bg-gray-900 text-gray-50',
+      light: 'bg-gray-50 text-gray-900',
+    },
     /// ... other variants
   },
 });
@@ -25,7 +27,11 @@ const NavbarButtonStyles = cva('ml-8 flex items-center cursor-pointer', {
 });
 const NavbarButtonSvgStyles = cva('mr-1');
 
-const Navbar = () => {
+export interface INavbarProps extends VariantProps<typeof NavbarContainer> {
+  intent: 'transparent' | 'primary' | 'light';
+}
+
+const Navbar = ({ intent }: INavbarProps) => {
   const { data, isLoading } = useNav();
 
   if (isLoading) {
@@ -33,17 +39,19 @@ const Navbar = () => {
   }
 
   return (
-    <div className={NavbarContainer()}>
+    <header className={NavbarContainer({ intent })}>
       <Button intent="outline" onClick={() => {}} text="Get in Touch" />
       <ul className="flex justify-between">
         {data.map((item, index) => (
-          <li key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
-            <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
-            <p>{item.title}</p>
+          <li key={item.slug}>
+            <Link href={`/${item.slug}`} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
+              <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+              <p>{item.title}</p>
+            </Link>
           </li>
         ))}
       </ul>
-    </div>
+    </header>
   );
 };
 

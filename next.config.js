@@ -11,6 +11,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'blog.afaruk.dev',
+      }
+
     ],
   },
   experimental: {

@@ -26,8 +26,9 @@ const useNav = () => {
       .map((author) => ({ title: author.name, slug: author.slug, svg: author.profile_image ?? '' })),
     ...pagesData.pages.map((page) => ({ title: page.title, slug: page.slug, svg: page.feature_image ?? '' })),
   ];
+  const profileImage = authorsData.authors.find((author) => author.name === 'Landing')?.profile_image ?? '';
 
-  return { data, error, isLoading };
+  return { data, error, isLoading, profileImage };
 };
 
 export default useNav;

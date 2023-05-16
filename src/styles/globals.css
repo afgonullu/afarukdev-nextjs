@@ -28,7 +28,7 @@
   a,
   button {
     @apply font-sans;
-    font-size: 0.889rem;
+    font-size: 0.8rem;
     line-height: 1.5;
     letter-spacing: 1.25px;
   }
@@ -97,5 +97,12 @@
     line-height: 1.5;
     letter-spacing: 0.5px;
     padding: 0.4rem;
+  }
+
+  small {
+    @apply font-sans;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
   }
 }
