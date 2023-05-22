@@ -1,3 +1,5 @@
+'use-client';
+
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,12 +8,16 @@ import useNav from '../../hooks/useNav';
 import Button from '../Button/Button';
 import { paddingX } from '../layouts/consts';
 
-const NavbarContainer = cva(['flex justify-between w-full h-20 mb-32 items-end pb-2', paddingX], {
+const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', paddingX], {
   variants: {
     intent: {
       transparent: 'bg-transparent text-gray-50',
       primary: 'bg-gray-900 text-gray-50',
       light: 'bg-gray-50 text-gray-900',
+    },
+    marginBottom: {
+      true: 'mb-32',
+      false: '',
     },
     /// ... other variants
   },
@@ -29,17 +35,20 @@ const NavbarButtonSvgStyles = cva('mr-1');
 
 export interface INavbarProps extends VariantProps<typeof NavbarContainer> {
   intent: 'transparent' | 'primary' | 'light';
+  marginBottom?: boolean;
 }
 
-const Navbar = ({ intent }: INavbarProps) => {
+const Navbar = ({ intent, marginBottom = true }: INavbarProps) => {
   const { data, isLoading } = useNav();
+
+  console.log('navbar data', data);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <header className={NavbarContainer({ intent })}>
+    <header className={NavbarContainer({ intent, marginBottom })}>
       <Button intent="outline" onClick={() => {}} text="Get in Touch" />
       <ul className="flex justify-between">
         {data.map((item, index) => (

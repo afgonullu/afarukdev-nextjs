@@ -1,3 +1,5 @@
+'use-client';
+
 import GhostContentAPI from '@tryghost/content-api';
 
 import config from '../config';
@@ -26,8 +28,6 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
     formats: ['html', 'plaintext'],
   });
 
-  console.log(landingPosts);
-
   const content = {
     hero: {
       title: landingPosts.find((post) => post.title === 'heroTitle')?.plaintext as string,
@@ -39,8 +39,14 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
   return content;
 };
 
-export const getPosts = async ({ featured }: { featured: boolean }) => {
-  const posts = await api.posts.browse({ limit: 'all', include: 'authors', filter: featured ? 'featured:true' : '' });
+export const getPosts = async ({ featured, author }: { featured?: boolean; author?: string }) => {
+  const posts = await api.posts.browse({
+    limit: 'all',
+    include: 'authors',
+    filter: [featured ? 'featured:true' : '', author ? `primary_author:${author}` : '']
+      .filter((item) => item !== '')
+      .join(','),
+  });
 
   return posts;
 };

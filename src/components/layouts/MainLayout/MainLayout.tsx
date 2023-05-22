@@ -1,3 +1,5 @@
+'use client';
+
 import { cva, VariantProps } from 'class-variance-authority';
 import { useRouter } from 'next/router';
 
@@ -15,7 +17,7 @@ const MainLayout = ({ children }: IMainLayoutProps) => {
 
   return (
     <div className={MainLayoutStyles()}>
-      <Navbar intent={router.pathname === '/' ? 'transparent' : 'primary'} />
+      <Navbar intent={router.pathname === '/' ? 'transparent' : 'primary'} marginBottom={router.pathname === '/'} />
       {children}
       <Footer />
     </div>
