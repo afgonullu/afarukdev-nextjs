@@ -25,11 +25,11 @@ const Hero = ({ hero }: IHeroProps) => {
         <h1 className={cn(heroStyles.greeting())}>{hero.greeting}</h1>
         <h2 className={cn(heroStyles.title())}>{hero.title}</h2>
         <p>
-          <mark className={cn(heroStyles.description())}>{hero.description}</mark>
+          <mark className={cn(heroStyles.description())}>{hero.text}</mark>
         </p>
         <div id="cta-buttons" className={cn(heroStyles.ctaButtons())}>
-          <Button intent="primary" onClick={() => {}} text="Learn More" />
-          <Button intent="accent" onClick={() => {}} text="Resume" />
+          <Button intent="primary" src="/resume" text="Learn More" />
+          {/* <Button intent="accent" onClick={() => {}} text="Resume" /> */}
         </div>
       </div>
     </div>

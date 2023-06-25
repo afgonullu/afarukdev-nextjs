@@ -15,7 +15,7 @@ const Featured = ({ posts }: IFeaturedProps) => {
     <LandingSection title="Featured">
       <div className={FeaturedStyles()}>
         {posts.map((post) => {
-          return <FeaturedCard post={post} />;
+          return <FeaturedCard key={post.slug} post={post} />;
         })}
       </div>
     </LandingSection>

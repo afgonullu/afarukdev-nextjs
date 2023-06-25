@@ -35,10 +35,10 @@ const NavbarButtonSvgStyles = cva('mr-1');
 
 export interface INavbarProps extends VariantProps<typeof NavbarContainer> {
   intent: 'transparent' | 'primary' | 'light';
-  marginBottom?: boolean;
+  marginBottom: boolean | null;
 }
 
-const Navbar = ({ intent, marginBottom = true }: INavbarProps) => {
+const Navbar = ({ intent, marginBottom }: INavbarProps) => {
   const { data, isLoading } = useNav();
 
   console.log('navbar data', data);
@@ -49,7 +49,7 @@ const Navbar = ({ intent, marginBottom = true }: INavbarProps) => {
 
   return (
     <header className={NavbarContainer({ intent, marginBottom })}>
-      <Button intent="outline" onClick={() => {}} text="Get in Touch" />
+      <Button intent="outline" src="/contact" text="Get in Touch" />
       <ul className="flex justify-between">
         {data.map((item, index) => (
           <li key={item.slug}>

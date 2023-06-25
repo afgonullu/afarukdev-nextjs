@@ -16,7 +16,15 @@ export interface ILandingContent {
   hero: {
     title: string;
     greeting: string;
-    description: string;
+    text: string;
+  };
+  aboutMe: {
+    title: string;
+    text: string;
+  };
+  services: {
+    title: string;
+    text: string;
   };
 }
 
@@ -32,7 +40,15 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
     hero: {
       title: landingPosts.find((post) => post.title === 'heroTitle')?.plaintext as string,
       greeting: landingPosts.find((post) => post.title === 'heroGreeting')?.plaintext as string,
-      description: landingPosts.find((post) => post.title === 'heroDescription')?.plaintext as string,
+      text: landingPosts.find((post) => post.title === 'heroText')?.plaintext as string,
+    },
+    aboutMe: {
+      title: landingPosts.find((post) => post.title === 'aboutMeTitle')?.plaintext as string,
+      text: landingPosts.find((post) => post.title === 'aboutMeText')?.plaintext as string,
+    },
+    services: {
+      title: landingPosts.find((post) => post.title === 'servicesTitle')?.plaintext as string,
+      text: landingPosts.find((post) => post.title === 'servicesText')?.plaintext as string,
     },
   };
 

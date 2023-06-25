@@ -4,7 +4,13 @@ import type { IFeaturedCardProps } from './FeaturedCard';
 import FeaturedCard from './FeaturedCard';
 
 const props: IFeaturedCardProps = {
-  name: 'FeaturedCard',
+  post: {
+    id: '1',
+    slug: 'test',
+    title: 'Test',
+    excerpt: 'Test',
+    feature_image: 'https://via.placeholder.com/150',
+  },
 };
 
 const meta: Meta<typeof FeaturedCard> = {
@@ -17,13 +23,12 @@ type Story = StoryObj<typeof FeaturedCard>;
 
 export const Primary: Story = {
   args: {
-    name: props.name,
+    post: props.post,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    name: props.name,
-    intent: 'secondary',
+    post: props.post,
   },
 };

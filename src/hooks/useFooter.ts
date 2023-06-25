@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import config from '../lib/config';
 
-const fetcher = (url) => axios.get(url).then((res) => res.data);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 const useFooter = () => {
   const {

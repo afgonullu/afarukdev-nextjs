@@ -5,7 +5,7 @@ import Button from './Button';
 
 const props: IButtonProps = {
   text: 'Learn More',
-  onClick: () => {},
+  src: '/projects',
   intent: 'primary',
 };
 
@@ -21,7 +21,7 @@ export const Primary: Story = {
   args: {
     text: props.text,
     intent: props.intent,
-    onClick: props.onClick,
+    src: '/projects',
   },
 };
 
@@ -29,7 +29,7 @@ export const Secondary: Story = {
   args: {
     text: props.text,
     intent: 'secondary',
-    onClick: props.onClick,
+    src: '/projects',
   },
 };
 
@@ -37,7 +37,7 @@ export const Outline: Story = {
   args: {
     text: props.text,
     intent: 'outline',
-    onClick: props.onClick,
+    src: '/projects',
   },
 };
 
@@ -45,6 +45,6 @@ export const Accent: Story = {
   args: {
     text: props.text,
     intent: 'accent',
-    onClick: props.onClick,
+    src: '/projects',
   },
 };

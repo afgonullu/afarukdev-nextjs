@@ -18,7 +18,10 @@ const Projects = ({ post }: { post: PostOrPage }) => {
         />
         <h1 className="bg-gray-50/60 p-2">{post.title}</h1>
       </div>
-      <div className={cva(['prose m-2 max-w-none', paddingX])()} dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div
+        className={cva(['prose m-2 max-w-none', paddingX])()}
+        dangerouslySetInnerHTML={{ __html: post.html ?? '' }}
+      />
     </>
   );
 };

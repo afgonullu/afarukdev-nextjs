@@ -1,4 +1,5 @@
 import { cva, VariantProps } from 'class-variance-authority';
+import Link from 'next/link';
 
 const ButtonStyles = cva('w-48 h-10 flex justify-center items-center font-semibold tracking-tight rounded-full mr-4', {
   variants: {
@@ -16,14 +17,14 @@ const ButtonStyles = cva('w-48 h-10 flex justify-center items-center font-semibo
 export interface IButtonProps extends VariantProps<typeof ButtonStyles> {
   intent: 'primary' | 'secondary' | 'outline' | 'accent';
   text: string;
-  onClick: () => void;
+  src: string;
 }
 
-const Button = ({ intent, text, onClick }: IButtonProps) => {
+const Button = ({ intent, text, src }: IButtonProps) => {
   return (
-    <button type="button" onClick={onClick} className={ButtonStyles({ intent })}>
+    <Link href={src} className={ButtonStyles({ intent })}>
       {text}
-    </button>
+    </Link>
   );
 };
 

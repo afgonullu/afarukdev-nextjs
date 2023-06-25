@@ -7,14 +7,17 @@ import MainLayout from '../components/layouts/MainLayout/MainLayout';
 
 const jost = Jost({
   variable: '--font-jost',
+  subsets: ['latin'],
 });
 
 const besley = Besley({
   variable: '--font-besley',
+  subsets: ['latin'],
 });
 
 const bodoni = Bodoni_Moda({
   variable: '--font-bodoni',
+  subsets: ['latin'],
 });
 
 const App = ({ Component, pageProps }: AppProps) => (
