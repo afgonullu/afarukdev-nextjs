@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import { Besley, Bodoni_Moda, Jost } from 'next/font/google';
 
 import MainLayout from '../components/layouts/MainLayout/MainLayout';
+import Providers from './providers';
 
 const jost = Jost({
   variable: '--font-jost',
@@ -23,7 +24,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={`${jost.variable} ${besley.variable} ${bodoni.variable}`}>
-        <MainLayout>{children}</MainLayout>
+        <Providers>
+          <MainLayout>{children}</MainLayout>
+        </Providers>
       </body>
     </html>
   );

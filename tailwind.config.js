@@ -1,12 +1,14 @@
 const plugin = require('tailwindcss/plugin')
 const colors = require('tailwindcss/colors')
 const { fontFamily } = require('tailwindcss/defaultTheme')
+const { nextui } = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     colors: {
@@ -79,7 +81,9 @@ module.exports = {
       filter: ['hover', 'focus'],
     }
   },
+  darkMode: "class",
   plugins: [
+    nextui(),
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     plugin(function ({ matchUtilities, theme }) {
