@@ -12,7 +12,7 @@ export interface IFeaturedProps extends VariantProps<typeof FeaturedStyles> {
 
 const Featured = ({ posts }: IFeaturedProps) => {
   return (
-    <LandingSection title="Featured">
+    <LandingSection background="primary" title="Featured" hasPadding>
       <div className={FeaturedStyles()}>
         {posts.map((post) => {
           return <FeaturedCard key={post.slug} post={post} />;

@@ -37,6 +37,7 @@
         "tsx": "never"
       }
     ],
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "react/require-default-props": "off"
   }
 }

@@ -21,16 +21,18 @@ export interface ILandingContent {
   aboutMe: {
     title: string;
     text: string;
+    image: string;
   };
   services: {
     title: string;
     text: string;
+    image: string;
   };
 }
 
 const getLandingPosts = async (): Promise<ILandingContent> => {
   const landingPosts = await api.posts.browse({
-    fields: ['id', 'title', 'slug', 'feature_image', 'plaintext', 'feature_image_alt', 'feature_image_caption'],
+    fields: ['id', 'title', 'slug', 'feature_image', 'plaintext', 'html', 'feature_image_alt', 'feature_image_caption'],
     limit: 'all',
     filter: 'primary_author:Landing',
     formats: ['html', 'plaintext'],
@@ -44,11 +46,13 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
     },
     aboutMe: {
       title: landingPosts.find((post) => post.title === 'aboutMeTitle')?.plaintext as string,
-      text: landingPosts.find((post) => post.title === 'aboutMeText')?.plaintext as string,
+      text: landingPosts.find((post) => post.title === 'aboutMeText')?.html as string,
+      image: landingPosts.find((post) => post.title === 'aboutMeText')?.feature_image as string,
     },
     services: {
       title: landingPosts.find((post) => post.title === 'servicesTitle')?.plaintext as string,
-      text: landingPosts.find((post) => post.title === 'servicesText')?.plaintext as string,
+      text: landingPosts.find((post) => post.title === 'servicesText')?.html as string,
+      image: landingPosts.find((post) => post.title === 'servicesText')?.feature_image as string,
     },
   };
 

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 
 import landingBG from '../../public/images/landing_background.png';
+import AboutMe from '../components/AboutMe/AboutMe';
 import Featured from '../components/Featured/Featured';
 import Hero from '../components/Hero/Hero';
 import ghost from '../lib/services/ghost';
@@ -26,6 +27,7 @@ const Home = async () => {
       <main className="flex h-full w-full flex-col">
         <Hero hero={content.hero} />
         <Featured posts={posts} />
+        <AboutMe aboutMe={content.aboutMe} />
       </main>
     </>
   );
