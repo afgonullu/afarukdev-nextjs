@@ -3,6 +3,7 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import useNav from '../../hooks/useNav';
 import Button from '../Button/Button';
@@ -39,12 +40,11 @@ export interface INavbarProps extends VariantProps<typeof NavbarContainer> {
 }
 
 const Navbar = ({ intent, marginBottom }: INavbarProps) => {
+  const pathname = usePathname();
   const { data, isLoading } = useNav();
 
-  console.log('navbar data', data);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (isLoading || data.length === 0) {
+    return <div style={{ height: '5rem', width: '100%', marginBottom: pathname === '/' ? '8rem' : '0' }} />;
   }
 
   return (
