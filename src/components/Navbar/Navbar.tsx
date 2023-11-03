@@ -1,7 +1,6 @@
 'use-client';
 
 import {
-  Link as NextLink,
   Navbar as NextNavbar,
   NavbarBrand,
   NavbarContent,
@@ -12,8 +11,9 @@ import {
 } from '@nextui-org/react';
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useNav from '../../hooks/useNav';
 import Button from '../Button/Button';
@@ -45,18 +45,22 @@ const NavbarButtonStyles = cva('ml-8 flex items-center cursor-pointer', {
 });
 const NavbarButtonSvgStyles = cva('mr-1');
 
-export interface INavbarProps extends VariantProps<typeof NavbarContainer> {
-  intent: 'transparent' | 'primary' | 'light';
-  marginBottom: boolean | null;
-}
+export interface INavbarProps extends VariantProps<typeof NavbarContainer> {}
 
-const Navbar = ({ intent, marginBottom }: INavbarProps) => {
+const Navbar = () => {
   const pathname = usePathname();
   const { data, isLoading } = useNav();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [dynamicIntent, setDynamicIntent] = useState(intent);
+  const [scrollTop, setScrollTop] = useState(0);
+  const [dynamicIntent, setDynamicIntent] = useState<'transparent' | 'primary' | 'light'>(
+    pathname === '/' ? 'transparent' : 'primary'
+  );
 
-  if (isLoading || data.length === 0) {
+  useEffect(() => {
+    setDynamicIntent(pathname === '/' && scrollTop === 0 ? 'transparent' : 'primary');
+  }, [pathname, scrollTop]);
+
+  if (isLoading || data.authors.length === 0 || data.pages.length === 0) {
     return <div style={{ height: '5rem', width: '100%', marginBottom: pathname === '/' ? '8rem' : '0' }} />;
   }
 
@@ -67,12 +71,12 @@ const Navbar = ({ intent, marginBottom }: INavbarProps) => {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={toggleMenu}
       classNames={{
-        base: NavbarContainer({ intent: dynamicIntent, marginBottom }),
+        base: NavbarContainer({ intent: dynamicIntent, marginBottom: pathname === '/' }),
       }}
       maxWidth="full"
       isBlurred={false}
       disableScrollHandler={false}
-      onScrollPositionChange={(position) => (position !== 0 ? setDynamicIntent('primary') : setDynamicIntent(intent))}
+      onScrollPositionChange={(position) => setScrollTop(position)}
     >
       <NavbarContent className="block sm:hidden" justify="start">
         <NavbarMenuToggle icon={<HamburgerMenu />} aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
@@ -85,29 +89,44 @@ const Navbar = ({ intent, marginBottom }: INavbarProps) => {
 
       <NavbarContent justify="center">
         <NavbarBrand>
-          <NextLink href="/">
+          <Link href="/">
             <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} />
-          </NextLink>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent justify="end" className="hidden items-center gap-4 sm:flex">
-        {data.map((item, index) => (
+        {data.authors.map((item, index) => (
           <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
-            <NextLink href={`/${item.slug}`} className="flex items-center text-gray-50">
+            <Link href={`/content/${item.slug}`} className="flex items-center text-gray-50">
               <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
               <p>{item.title}</p>
-            </NextLink>
+            </Link>
+          </NavbarItem>
+        ))}
+        {data.pages.map((item, index) => (
+          <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
+            <Link href={`/${item.slug}`} className="flex items-center text-gray-50">
+              <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+              <p>{item.title}</p>
+            </Link>
           </NavbarItem>
         ))}
       </NavbarContent>
 
       <NavbarMenu>
-        {data.map((item) => (
+        {data.authors.map((item) => (
           <NavbarMenuItem key={item.slug}>
-            <NextLink className="w-full text-gray-900" href={`/${item.slug}`} size="lg">
+            <Link className="w-full text-gray-900" href={`/${item.slug}`}>
               {item.title}
-            </NextLink>
+            </Link>
+          </NavbarMenuItem>
+        ))}
+        {data.pages.map((item) => (
+          <NavbarMenuItem key={item.slug}>
+            <Link className="w-full text-gray-900" href={`/${item.slug}`}>
+              {item.title}
+            </Link>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

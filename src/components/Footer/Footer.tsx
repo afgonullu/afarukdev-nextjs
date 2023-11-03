@@ -36,7 +36,14 @@ const Footer = () => {
         <div className="col-span-1 flex flex-col">
           <h6>Sitemap</h6>
           <ul>
-            {navData.map((item) => {
+            {navData.authors.map((item) => {
+              return (
+                <li key={item.slug}>
+                  <Link href={`/${item.slug}`}>{item.title}</Link>
+                </li>
+              );
+            })}
+            {navData.pages.map((item) => {
               return (
                 <li key={item.slug}>
                   <Link href={`/${item.slug}`}>{item.title}</Link>

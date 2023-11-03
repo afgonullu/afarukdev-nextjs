@@ -12,7 +12,7 @@ export interface IPostCardProps extends VariantProps<typeof PostCardStyles> {
 
 const PostCard = ({ post, category }: IPostCardProps) => {
   return (
-    <Link href={`/${category}/${post.slug}`} key={post.slug} className="w-full p-2">
+    <Link href={`/content/${category}/${post.slug}`} key={post.slug} className="w-full p-2">
       <div className="group flex cursor-pointer justify-start overflow-hidden rounded-lg from-primary-100">
         <Image
           src={post.feature_image || 'https://picsum.photos/id/287/250/300'} // TODO: replace placeholder with a dynamic random image

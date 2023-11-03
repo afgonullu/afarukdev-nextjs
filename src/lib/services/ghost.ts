@@ -83,6 +83,14 @@ export const getPages = async () => {
   return pages;
 };
 
+export async function getSinglePage(pageSlug: string) {
+  const post = api.pages.read({
+    slug: pageSlug,
+  });
+
+  return post;
+}
+
 export async function getSinglePost(postSlug: string) {
   const post = api.posts.read({
     slug: postSlug,
@@ -96,6 +104,7 @@ const ghost = {
   getPosts,
   getAuthors,
   getPages,
+  getSinglePage,
   getSinglePost,
 };
 
