@@ -1,8 +1,8 @@
 import { cva } from 'class-variance-authority';
 import Image from 'next/image';
 
-import { paddingX } from '../../components/layouts/consts';
-import { getPages, getSinglePage } from '../../lib/services/ghost';
+import { paddingX } from '../../../components/layouts/consts';
+import { getPages, getSinglePage } from '../../../lib/services/ghost';
 
 const Project = async ({ params }: { params: { pageSlug: string } }) => {
   const post = await getSinglePage(params.pageSlug);

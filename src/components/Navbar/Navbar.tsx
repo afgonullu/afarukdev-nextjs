@@ -106,7 +106,7 @@ const Navbar = () => {
         ))}
         {data.pages.map((item, index) => (
           <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
-            <Link href={`/${item.slug}`} className="flex items-center text-gray-50">
+            <Link href={`/pages/${item.slug}`} className="flex items-center text-gray-50">
               <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
               <p>{item.title}</p>
             </Link>
