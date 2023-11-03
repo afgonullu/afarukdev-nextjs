@@ -34,7 +34,7 @@ const LandingSection = ({ title, children, background, hasPadding = false, image
   <div className={LandingSectionStyles({ background, hasPadding, hasImage: !!image })}>
     {image ? (
       <>
-        <div className="relative hidden h-full overflow-hidden xl:flex xl:w-5/12">
+        <div className="relative hidden h-screen overflow-hidden xl:flex xl:w-5/12">
           <Image
             src={image}
             alt="Background of Landing Page"

@@ -5,7 +5,8 @@ import PageLayout from '../../components/layouts/PageLayout/PageLayout';
 import PostCard from '../../components/PostCard/PostCard';
 import { getPosts } from '../../lib/services/ghost';
 
-const Projects = ({ posts }: { posts: PostsOrPages }) => {
+const Projects = async () => {
+  const posts = (await getPosts({ author: 'projects' })) as PostsOrPages;
   return (
     <PageLayout title="Projects">
       {posts.map((post) => {
@@ -15,19 +16,19 @@ const Projects = ({ posts }: { posts: PostsOrPages }) => {
   );
 };
 
-export async function getStaticProps() {
-  const posts = await getPosts({ author: 'projects' });
+// const getProjectPosts = async () => {
+//   const posts = await getPosts({ author: 'projects' });
 
-  if (!posts) {
-    return {
-      notFound: true,
-    };
-  }
+//   if (!posts) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  return {
-    props: { posts },
-    revalidate: 60,
-  };
-}
+//   return {
+//     props: { posts },
+//     revalidate: 60,
+//   };
+// };
 
 export default Projects;

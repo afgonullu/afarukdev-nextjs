@@ -2,11 +2,11 @@ import type { PostOrPage } from '@tryghost/content-api';
 import { cva } from 'class-variance-authority';
 import Image from 'next/image';
 
-import { paddingX } from '../../components/layouts/consts';
-import { getPosts, getSinglePost } from '../../lib/services/ghost';
+import { paddingX } from '../../../components/layouts/consts';
+import { getPosts, getSinglePost } from '../../../lib/services/ghost';
 
-const Projects = ({ post }: { post: PostOrPage }) => {
-  console.log(post);
+const Project = async ({ params }: { params: { slug: string } }) => {
+  const post = await getSinglePost(params.slug);
   return (
     <>
       <div className={cva(['relative flex items-end pb-4', paddingX])()} style={{ height: 'calc(60vh - 5rem)' }}>
@@ -26,31 +26,13 @@ const Projects = ({ post }: { post: PostOrPage }) => {
   );
 };
 
-export async function getStaticPaths() {
+export async function generateStaticParams() {
   const posts = await getPosts({ author: 'projects' });
 
   // Get the paths we want to create based on posts
-  const paths = posts.map((item) => ({
-    params: { slug: item.slug },
+  return posts.map((item) => ({
+    slug: item.slug,
   }));
-
-  // { fallback: false } means posts not found should 404.
-  return { paths, fallback: false };
 }
 
-export async function getStaticProps(context: { params: { slug: string } }) {
-  const post = await getSinglePost(context.params.slug);
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: { post },
-    revalidate: 60,
-  };
-}
-
-export default Projects;
+export default Project;
