@@ -26,7 +26,7 @@ const Footer = () => {
           <div className="flex w-52 justify-between">
             {data.map((item) => {
               return (
-                <a key={item.title} className="p-2" href={item.link}>
+                <a key={item.title} className="p-2" href={item.link} target="_blank" rel="noreferrer">
                   <Image src={item.svg} alt={item.text} width={40} height={40} className="hover:invert" />
                 </a>
               );

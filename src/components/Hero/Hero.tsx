@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import { paddingX } from '../layouts/consts';
 
 const heroStyles = {
-  container: cva(['flex w-full justify-center xl:justify-end', paddingX]),
+  container: cva(['z-10 flex w-full justify-center xl:justify-end', paddingX]),
   hero: cva('flex flex-col'),
   greeting: cva('text-base font-sans text-shadow-hero-title-sm mb-0 text-gray-50'),
   title: cva('text-shadow-hero-title text-gray-50 whitespace-pre-wrap'),

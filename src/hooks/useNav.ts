@@ -1,26 +1,20 @@
 import type { Authors, PostsOrPages } from '@tryghost/content-api';
-import axios from 'axios';
 import useSWR from 'swr';
 
 import config from '../lib/config';
-
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+import { fetcher } from '../lib/ghost.client';
 
 const useNav = () => {
   const {
     data: authorsData = { authors: [] },
     error: authorsError,
     isLoading: isAuthorsLoading,
-  } = useSWR<{ authors: Authors }>('authors', () =>
-    fetcher(`${config.url}/ghost/api/content/authors/?key=${config.key}`)
-  );
+  } = useSWR<{ authors: Authors }>('authors', () => fetcher(`/ghost/api/content/authors`));
   const {
     data: pagesData = { pages: [] },
     error: pagesError,
     isLoading: isPagesLoading,
-  } = useSWR<{ pages: PostsOrPages }>('pages', () =>
-    fetcher(`${config.url}/ghost/api/content/pages/?key=${config.key}`)
-  );
+  } = useSWR<{ pages: PostsOrPages }>('pages', () => fetcher(`/ghost/api/content/pages/`));
 
   const isLoading = isAuthorsLoading || isPagesLoading;
   const error = authorsError || pagesError;

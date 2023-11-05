@@ -35,7 +35,7 @@ const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', 
   },
 });
 
-const NavbarButtonStyles = cva('ml-8 flex items-center cursor-pointer', {
+const NavbarButtonStyles = cva('flex items-center cursor-pointer', {
   variants: {
     intent: {
       even: 'hover:filter hover:drop-shadow-navbar-svg-0',
@@ -88,14 +88,14 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent justify="center">
-        <NavbarBrand>
+        <NavbarBrand className={NavbarButtonStyles({ intent: 'even' })}>
           <Link href="/">
             <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} />
           </Link>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent justify="end" className="hidden items-center gap-4 sm:flex">
+      <NavbarContent justify="end" className="hidden items-center gap-8 sm:flex">
         {data.authors.map((item, index) => (
           <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
             <Link href={`/content/${item.slug}`} className="flex items-center text-gray-50">

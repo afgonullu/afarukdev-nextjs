@@ -13,12 +13,13 @@ const Project = async ({ params }: { params: { postSlug: string } }) => {
           src={post.feature_image || '/images/landing_background.png'}
           alt={post.feature_image_alt || post.title || 'Background of Landing Page'}
           fill
-          className="-z-10 h-full object-cover"
+          className="h-full object-cover"
         />
-        <h1 className="bg-gray-50/60 p-2">{post.title}</h1>
+        <h1 className="z-10 bg-gray-50/60 p-2">{post.title}</h1>
       </div>
       <div
-        className={cva(['prose m-2 max-w-none', paddingX])()}
+        className={cva([paddingX])()}
+        style={{ margin: '2rem' }}
         dangerouslySetInnerHTML={{ __html: post.html ?? '' }}
       />
     </>
@@ -28,7 +29,6 @@ const Project = async ({ params }: { params: { postSlug: string } }) => {
 export async function generateStaticParams() {
   const posts = await getPosts({ featured: false });
 
-  // Get the paths we want to create based on posts
   return posts.map((item) => ({
     postSlug: item.slug,
   }));

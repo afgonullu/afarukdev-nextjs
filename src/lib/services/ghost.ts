@@ -1,16 +1,6 @@
-'use-client';
+import { Authors, PostOrPage, PostsOrPages } from '@tryghost/content-api';
 
-import GhostContentAPI from '@tryghost/content-api';
-
-import config from '../config';
-
-const api = new GhostContentAPI({
-  url: config.url!,
-  key: config.key!,
-  version: 'v5.0',
-});
-
-// TODO: Add a defaultBrowseConfig object to this service.
+import ghostApi, { endpoints } from '../ghost.client';
 
 export interface ILandingContent {
   hero: {
@@ -31,12 +21,16 @@ export interface ILandingContent {
 }
 
 const getLandingPosts = async (): Promise<ILandingContent> => {
-  const landingPosts = await api.posts.browse({
-    fields: ['id', 'title', 'slug', 'feature_image', 'plaintext', 'html', 'feature_image_alt', 'feature_image_caption'],
-    limit: 'all',
-    filter: 'primary_author:Landing',
-    formats: ['html', 'plaintext'],
+  const { data } = await ghostApi.get(endpoints.posts.browse, {
+    params: {
+      filter: 'primary_author:Landing',
+      fields: 'id,title,slug,feature_image,plaintext,html,feature_image_alt,feature_image_caption',
+      formats: 'html,plaintext',
+      limit: 'all',
+    },
   });
+
+  const landingPosts: PostsOrPages = data.posts;
 
   const content = {
     hero: {
@@ -60,43 +54,72 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
 };
 
 export const getPosts = async ({ featured, author }: { featured?: boolean; author?: string }) => {
-  const posts = await api.posts.browse({
-    limit: 'all',
-    include: 'authors',
-    filter: [featured ? 'featured:true' : '', author ? `primary_author:${author}` : '']
-      .filter((item) => item !== '')
-      .join(','),
+  const { data } = await ghostApi.get(endpoints.posts.browse, {
+    params: {
+      filter: [featured ? 'featured:true' : '', author ? `primary_author:${author}` : '']
+        .filter((item) => item !== '')
+        .join(','),
+      include: 'authors',
+      limit: 'all',
+    },
   });
 
+  const { posts }: { posts: PostsOrPages } = data;
   return posts;
 };
 
 export const getAuthors = async () => {
-  const authors = await api.authors.browse({ limit: 'all' });
+  const { data } = await ghostApi.get(endpoints.authors.browse, {
+    params: {
+      limit: 'all',
+    },
+  });
+
+  const { authors }: { authors: Authors } = data;
 
   return authors;
 };
 
 export const getPages = async () => {
-  const pages = await api.pages.browse({ limit: 'all' });
+  const { data } = await ghostApi.get(endpoints.pages.browse, {
+    params: {
+      limit: 'all',
+    },
+  });
+
+  const { pages }: { pages: PostsOrPages } = data;
 
   return pages;
 };
 
-export async function getSinglePage(pageSlug: string) {
-  const post = api.pages.read({
-    slug: pageSlug,
-  });
+export const getSinglePage = async (pageSlug: string) => {
+  const { data } = await ghostApi.get(`${endpoints.pages.read}slug/${pageSlug}`);
+
+  const page: PostOrPage = data.pages[0];
+
+  return page;
+};
+
+export const getSinglePost = async (postSlug: string) => {
+  const { data } = await ghostApi.get(`${endpoints.posts.read}slug/${postSlug}`);
+
+  const post: PostOrPage = data.posts[0];
 
   return post;
-}
+};
 
-export async function getSinglePost(postSlug: string) {
-  const post = api.posts.read({
-    slug: postSlug,
+export async function getSocialLinks() {
+  const { data } = await ghostApi.get(endpoints.posts.browse, {
+    params: {
+      filter: 'tag:socialLink',
+      formats: 'html,plaintext',
+      limit: 'all',
+    },
   });
 
-  return post;
+  const socialLinks: PostsOrPages = data.posts;
+
+  return socialLinks;
 }
 
 const ghost = {

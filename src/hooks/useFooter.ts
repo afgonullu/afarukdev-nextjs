@@ -1,19 +1,20 @@
 import type { PostsOrPages } from '@tryghost/content-api';
-import axios from 'axios';
 import useSWR from 'swr';
 
-import config from '../lib/config';
-
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+import { fetcher } from '../lib/ghost.client';
 
 const useFooter = () => {
   const {
     data: socialsData = { posts: [] },
     error: socialsError,
     isLoading: isSocialsLoading,
-  } = useSWR<{ posts: PostsOrPages }>(
-    `${config.url}/ghost/api/content/posts/?key=${config.key}&formats=html,plaintext&include=tags&filter=tag:socialLink`,
-    fetcher
+  } = useSWR<{ posts: PostsOrPages }>('socials', () =>
+    fetcher(`/ghost/api/content/posts/`, {
+      params: {
+        filter: 'tag:socialLink',
+        fields: 'title,slug,feature_image,feature_image_caption,feature_image_alt,plaintext',
+      },
+    })
   );
 
   const isLoading = isSocialsLoading;
