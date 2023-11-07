@@ -8,7 +8,8 @@ const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center
     background: {
       primary: 'bg-primary text-gray-50',
       secondary: 'bg-secondary text-gray-50',
-      accent: 'bg-gray-50/60 text-secondary',
+      light: 'bg-gray-50/60 text-secondary',
+      dark: 'bg-gray-900 text-gray-50',
     },
     hasPadding: {
       true: paddingX,
@@ -25,7 +26,7 @@ const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center
 export interface ILandingSectionProps extends VariantProps<typeof LandingSectionStyles> {
   title: string;
   children: React.ReactNode;
-  background: 'primary' | 'secondary' | 'accent';
+  background: 'primary' | 'secondary' | 'light' | 'dark';
   hasPadding?: boolean;
   image?: string;
 }
