@@ -7,7 +7,7 @@ import useNav from '../../hooks/useNav';
 import { paddingX } from '../layouts/consts';
 
 const FooterStyles = cva(['flex flex-col bg-gray-900 text-gray-50']);
-const FooterNavStyles = cva(['grid grid-cols-5 gap-4 py-4', paddingX]);
+const FooterNavStyles = cva(['grid grid-cols-5 gap-4 py-8', paddingX]);
 const CopyStyles = cva(['flex flex-col justify-center bg-primary-900 text-primary-50 py-4', paddingX]);
 
 const Footer = () => {

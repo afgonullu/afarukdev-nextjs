@@ -11,7 +11,7 @@ export interface IFeaturedCardProps extends VariantProps<typeof FeaturedCardStyl
 const FeaturedCard = ({ post }: IFeaturedCardProps) => {
   return (
     <div key={post.slug} className="p-2">
-      <div className="group relative h-40 w-40 cursor-pointer overflow-hidden rounded-lg  from-primary-100">
+      <div className="group relative h-40 w-40 cursor-pointer overflow-hidden rounded-lg from-primary-100">
         <Image
           src={post.feature_image || 'https://picsum.photos/id/287/250/300'} // TODO: replace placeholder with a dynamic random image
           alt="Background"

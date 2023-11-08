@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { paddingX } from '../consts';
 
-const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center'], {
+const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center px-8 xl:px-0'], {
   variants: {
     background: {
       primary: 'bg-primary text-gray-50',
@@ -15,11 +15,17 @@ const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center
       true: paddingX,
     },
     hasImage: {
-      false: 'flex-col py-4 justify-center',
+      false: 'flex-col py-8 justify-center',
+      true: 'items-stretch gap-8',
+    },
+    imagePosition: {
+      left: 'flex-row xl:pr-8',
+      right: 'flex-row-reverse xl:pl-8',
     },
   },
   defaultVariants: {
     hasPadding: false,
+    imagePosition: 'left',
   },
 });
 
@@ -29,21 +35,24 @@ export interface ILandingSectionProps extends VariantProps<typeof LandingSection
   background: 'primary' | 'secondary' | 'light' | 'dark';
   hasPadding?: boolean;
   image?: string;
+  imagePosition: 'left' | 'right' | null;
 }
 
-const LandingSection = ({ title, children, background, hasPadding = false, image }: ILandingSectionProps) => (
-  <div className={LandingSectionStyles({ background, hasPadding, hasImage: !!image })}>
+const LandingSection = ({
+  title,
+  children,
+  background,
+  hasPadding = false,
+  image,
+  imagePosition,
+}: ILandingSectionProps) => (
+  <div className={LandingSectionStyles({ background, hasPadding, hasImage: !!image, imagePosition })}>
     {image ? (
       <>
-        <div className="relative hidden h-screen overflow-hidden xl:flex xl:w-5/12">
-          <Image
-            src={image}
-            alt="Background of Landing Page"
-            fill
-            className="!relative h-full object-cover object-center"
-          />
+        <div className="relative hidden overflow-hidden xl:flex xl:w-5/12">
+          <Image src={image} alt="Background of Landing Page" fill className="object-cover object-center" />
         </div>
-        <div className="ml-4 w-full flex-col py-4 xl:w-7/12">
+        <div className="w-full flex-col py-8 xl:w-7/12">
           <h4>{title}</h4>
           {children}
         </div>

@@ -25,7 +25,7 @@ const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', 
     intent: {
       transparent: 'bg-transparent text-gray-50',
       primary: 'bg-gray-900 text-gray-50',
-      light: 'bg-gray-50 text-gray-900',
+      light: 'bg-gray-50/60 text-gray-900',
     },
     marginBottom: {
       true: 'mb-32',

@@ -22,7 +22,7 @@
   }
 
   mark {
-    @apply bg-gray-50 bg-opacity-50 leading-8;
+    @apply bg-gray-50/60 leading-8;
   }
 
   a,
@@ -68,7 +68,7 @@
   }
 
   h4 {
-    @apply font-serif;
+    @apply mb-6 font-serif;
     font-size: 1.563rem;
     font-weight: 500;
     line-height: 1.35;
