@@ -1,6 +1,6 @@
-import AboutMe from '../components/AboutMe/AboutMe';
-import Featured from '../components/Featured/Featured';
-import Hero from '../components/Hero/Hero';
+import AboutMe from '../components/LandingSections/AboutMe/AboutMe';
+import Featured from '../components/LandingSections/Featured/Featured';
+import Hero from '../components/LandingSections/Hero/Hero';
 import NewsletterSub from '../components/NewsletterSub/NewsletterSub';
 import ghost from '../lib/services/ghost';
 

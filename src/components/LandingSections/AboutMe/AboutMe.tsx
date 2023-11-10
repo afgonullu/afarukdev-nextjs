@@ -1,7 +1,7 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
-import { ILandingContent } from '../../lib/services/ghost';
-import LandingSection from '../layouts/LandingSection/LandingSection';
+import { ILandingContent } from '../../../lib/services/ghost';
+import LandingSection from '../../layouts/LandingSection/LandingSection';
 
 const AboutMeStyles = cva('w-full flex flex-col justify-start');
 

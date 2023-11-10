@@ -1,11 +1,11 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 
-import landingBG from '../../../public/images/landing_background.png';
-import type { ILandingContent } from '../../lib/services/ghost';
-import cn from '../../utils/cn';
-import Button from '../Button/Button';
-import { paddingX } from '../layouts/consts';
+import landingBG from '../../../../public/images/landing_background.png';
+import type { ILandingContent } from '../../../lib/services/ghost';
+import cn from '../../../utils/cn';
+import Button from '../../Button/Button';
+import { paddingX } from '../../layouts/consts';
 
 const SvgBlob = () => (
   <svg className="absolute bottom-[-1px] fill-gray-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
