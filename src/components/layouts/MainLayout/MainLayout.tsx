@@ -5,7 +5,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import Footer from '../../Footer/Footer';
 import Navbar from '../../Navbar/Navbar';
 
-const MainLayoutStyles = cva('flex w-full flex-col');
+const MainLayoutStyles = cva('flex w-full flex-col min-h-screen');
 
 export interface IMainLayoutProps extends VariantProps<typeof MainLayoutStyles> {
   children: React.ReactNode;

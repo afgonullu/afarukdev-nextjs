@@ -1,7 +1,6 @@
 import type { Authors, PostsOrPages } from '@tryghost/content-api';
 import useSWR from 'swr';
 
-import config from '../lib/config';
 import { fetcher } from '../lib/ghost.client';
 
 const useNav = () => {
@@ -22,7 +21,7 @@ const useNav = () => {
     authors: authorsData.authors
       .filter((author) => author.name !== 'Landing')
       .map((author) => ({ title: author.name, slug: author.slug, svg: author.profile_image ?? '' })),
-    pages: pagesData.pages.map((page) => ({ title: page.title, slug: page.slug, svg: page.feature_image ?? '' })),
+    pages: pagesData.pages.map((page) => ({ title: page.title, slug: page.slug, svg: page.twitter_image ?? '' })),
   };
 
   const profileImage = authorsData.authors.find((author) => author.name === 'Landing')?.profile_image ?? '';

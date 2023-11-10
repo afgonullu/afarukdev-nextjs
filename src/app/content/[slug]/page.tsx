@@ -5,7 +5,7 @@ import PageLayout from '../../../components/layouts/PageLayout/PageLayout';
 import PostCard from '../../../components/PostCard/PostCard';
 import { getPosts } from '../../../lib/services/ghost';
 
-const Projects = async ({ params }: { params: { slug: string } }) => {
+const Posts = async ({ params }: { params: { slug: string } }) => {
   const posts = (await getPosts({ author: params.slug })) as PostsOrPages;
 
   const title = params.slug
@@ -14,7 +14,7 @@ const Projects = async ({ params }: { params: { slug: string } }) => {
     .join(' ');
 
   return (
-    <PageLayout title={title}>
+    <PageLayout title={title} background="light">
       {posts.map((post) => {
         return <PostCard key={post.slug} post={post} category={params.slug} />;
       })}
@@ -22,4 +22,4 @@ const Projects = async ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default Projects;
+export default Posts;

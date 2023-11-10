@@ -96,14 +96,5 @@ module.exports = {
         { values: theme('textShadow') }
       )
     }),
-    // function ({ addComponents }) {
-    //   const newComponents = {
-    //     '.reveal-text': {
-    //       animation: 'reveal 0.4s forwards',
-    //     },
-    //   };
-
-    //   addComponents(newComponents);
-    // }
   ],
 }

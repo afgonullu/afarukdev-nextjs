@@ -8,7 +8,7 @@ const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center
     background: {
       primary: 'bg-primary text-gray-50',
       secondary: 'bg-secondary text-gray-50',
-      light: 'bg-gray-50/60 text-secondary',
+      light: 'bg-gray-50 text-gray-900',
       dark: 'bg-gray-900 text-gray-50',
     },
     hasPadding: {

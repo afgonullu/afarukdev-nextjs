@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { paddingX } from '../../../../components/layouts/consts';
 import { getPosts, getSinglePost } from '../../../../lib/services/ghost';
 
-const Project = async ({ params }: { params: { postSlug: string } }) => {
+const Post = async ({ params }: { params: { postSlug: string } }) => {
   const post = await getSinglePost(params.postSlug);
   return (
-    <>
+    <div className="flex grow flex-col">
       <div className={cva(['relative flex items-end pb-4', paddingX])()} style={{ height: 'calc(60vh - 5rem)' }}>
         <Image
           src={post.feature_image || '/images/landing_background.png'}
@@ -22,7 +22,7 @@ const Project = async ({ params }: { params: { postSlug: string } }) => {
         style={{ margin: '2rem' }}
         dangerouslySetInnerHTML={{ __html: post.html ?? '' }}
       />
-    </>
+    </div>
   );
 };
 
@@ -34,4 +34,4 @@ export async function generateStaticParams() {
   }));
 }
 
-export default Project;
+export default Post;
