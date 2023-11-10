@@ -34,16 +34,3 @@ const FeaturedCard = ({ post }: IFeaturedCardProps) => {
 };
 
 export default FeaturedCard;
-
-// <figure className="relative h-48 w-48">
-//   <Image
-//     src="https://picsum.photos/id/287/250/300"
-//     alt="Background of Landing Page"
-//     fill
-//     className="absolute z-0 transition-all hover:scale-125"
-//   />
-//   <div className={FeaturedCardStyles()}>
-//     <figcaption className="hover:scale-150">Lorem, ipsum dolor</figcaption>
-//     <Image src="https://blog.afaruk.dev/content/images/2023/04/lockpicks.svg" alt="alt" width={20} height={20} />
-//   </div>
-// </figure>

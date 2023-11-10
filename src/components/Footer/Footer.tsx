@@ -1,8 +1,6 @@
-import { Spacer } from '@nextui-org/react';
 import { cva } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AiFillGithub, AiFillLinkedin, AiFillTwitterCircle } from 'react-icons/ai'; // You can install react-icons for these
 
 import useFooter from '../../hooks/useFooter';
 import useNav from '../../hooks/useNav';
