@@ -1,6 +1,11 @@
 'use-client';
 
 import {
+  Button as NextButton,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Navbar as NextNavbar,
   NavbarBrand,
   NavbarContent,
@@ -20,6 +25,28 @@ import Button from '../Button/Button';
 import { paddingX } from '../layouts/consts';
 import HamburgerMenu from './HamburgerMenu';
 
+export const ChevronDown = ({ fill, size, height, width, ...props }) => {
+  return (
+    <svg
+      fill="none"
+      height={size || height || 24}
+      viewBox="0 0 24 24"
+      width={size || width || 24}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="m19.92 8.95-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"
+        stroke={fill}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit={10}
+        strokeWidth={1.5}
+      />
+    </svg>
+  );
+};
+
 const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', paddingX], {
   variants: {
     intent: {
@@ -35,7 +62,7 @@ const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', 
   },
 });
 
-const NavbarButtonStyles = cva('flex items-center cursor-pointer', {
+const NavbarButtonStyles = cva('flex items-center cursor-pointer !opacity-100', {
   variants: {
     intent: {
       even: 'hover:filter hover:drop-shadow-navbar-svg-0',
@@ -46,6 +73,55 @@ const NavbarButtonStyles = cva('flex items-center cursor-pointer', {
 const NavbarButtonSvgStyles = cva('mr-1');
 
 export interface INavbarProps extends VariantProps<typeof NavbarContainer> {}
+
+const ServicesDropdown = ({ services }) => {
+  const button = services.find((item) => item.title === 'Services.Services');
+  const elements = services.filter((item) => item.title !== 'Services.Services');
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeDropdown = () => {
+    setTimeout(() => setIsOpen(false), 20);
+  };
+
+  return (
+    <Dropdown isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>
+      <DropdownTrigger>
+        <NavbarItem
+          className={NavbarButtonStyles({ intent: 'even' })}
+          onMouseOver={() => setIsOpen(true)}
+          onMouseLeave={closeDropdown}
+        >
+          <Link href={`/pages/${button.slug}`} className="flex items-center text-gray-50">
+            <Image src={button.svg} alt={button.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+            <p>{button.title.split('.')[1]}</p>
+          </Link>
+        </NavbarItem>
+      </DropdownTrigger>
+      <DropdownMenu
+        aria-label="ACME features"
+        className="w-[340px]"
+        itemClasses={{
+          base: 'gap-4',
+        }}
+        onMouseOver={() => setIsOpen(true)}
+        onMouseLeave={() => setIsOpen(false)}
+      >
+        {elements.map((item) => (
+          <DropdownItem
+            as={Link}
+            href={`/pages/${item.slug}`}
+            key={item.title}
+            description={item.tagline}
+            startContent={<Image src={item.svg} alt={item.title} width={60} height={60} className="" />}
+          >
+            {item.title.split('.')[1]}
+          </DropdownItem>
+        ))}
+      </DropdownMenu>
+    </Dropdown>
+  );
+};
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -88,7 +164,7 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent justify="center">
-        <NavbarBrand className={NavbarButtonStyles({ intent: 'even' })}>
+        <NavbarBrand className={NavbarButtonStyles({ intent: 'odd' })}>
           <Link href="/">
             <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} />
           </Link>
@@ -96,6 +172,7 @@ const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent justify="end" className="hidden items-center gap-8 sm:flex">
+        <ServicesDropdown services={data.services} />
         {data.authors.map((item, index) => (
           <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
             <Link href={`/content/${item.slug}`} className="flex items-center text-gray-50">

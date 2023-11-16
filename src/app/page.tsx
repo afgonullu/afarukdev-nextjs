@@ -1,6 +1,7 @@
 import AboutMe from '../components/LandingSections/AboutMe/AboutMe';
 import Featured from '../components/LandingSections/Featured/Featured';
 import Hero from '../components/LandingSections/Hero/Hero';
+import Services from '../components/LandingSections/Services/Services';
 import NewsletterSub from '../components/NewsletterSub/NewsletterSub';
 import ghost from '../lib/services/ghost';
 
@@ -20,6 +21,7 @@ const Home = async () => {
       <Featured posts={posts} />
       <NewsletterSub />
       <AboutMe aboutMe={content.aboutMe} />
+      <Services content={content.services} />
     </main>
   );
 };

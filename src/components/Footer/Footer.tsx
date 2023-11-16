@@ -4,11 +4,10 @@ import Link from 'next/link';
 
 import useFooter from '../../hooks/useFooter';
 import useNav from '../../hooks/useNav';
-import { paddingX } from '../layouts/consts';
 
-const FooterStyles = cva(['flex flex-col bg-gray-900 text-gray-50']);
-const FooterNavStyles = cva(['grid grid-cols-5 gap-4 py-8', paddingX]);
-const CopyStyles = cva(['flex flex-col justify-center bg-primary-900 text-gray-50 py-4', paddingX]);
+const FooterStyles = cva([
+  'flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-start justify-around py-8 bg-gray-900 text-gray-50',
+]);
 
 const Footer = () => {
   const { data } = useFooter();
@@ -16,51 +15,62 @@ const Footer = () => {
 
   return (
     <footer className={FooterStyles()}>
-      <div className={FooterNavStyles()}>
-        <div className="col-span-3">
-          <h6>Social Places</h6>
-          <small>
-            These are some of the places you can find and follow me on the internet. You can also email me, if you
-            prefer. Nevertheless, I will try to reply as soon as I can.
-          </small>
-          <div className="flex w-52 justify-between">
-            {data.map((item) => {
-              return (
-                <a key={item.title} className="p-2" href={item.link} target="_blank" rel="noreferrer">
-                  <Image src={item.svg} alt={item.text} width={40} height={40} className="hover:invert" />
-                </a>
-              );
-            })}
-          </div>
+      <div className="flex max-w-sm flex-col items-center justify-between lg:items-start ">
+        <div className="mb-4 flex w-52 justify-between gap-2">
+          {data.map((item) => {
+            return (
+              <a key={item.title} href={item.link} target="_blank" rel="noreferrer">
+                <Image src={item.svg} alt={item.text} width={40} height={40} className="hover:invert" />
+              </a>
+            );
+          })}
         </div>
-        <div className="col-span-1 flex flex-col">
-          <h6>Sitemap</h6>
-          <ul>
-            {navData.authors.map((item) => {
-              return (
-                <li key={item.slug}>
-                  <Link href={`/${item.slug}`}>{item.title}</Link>
-                </li>
-              );
-            })}
-            {navData.pages.map((item) => {
-              return (
-                <li key={item.slug}>
-                  <Link href={`/${item.slug}`}>{item.title}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <Image src={profileImage} alt="Abdullah Faruk" width={200} height={200} className="col-span-1 rounded-full" />
-      </div>
-      <div className={CopyStyles()}>
         <small>©2023 A Faruk Gonullu.</small>
         <small>
           Built with ❤️ and also with Next.js hosted on Vercel, Ghost CMS hosted on Digital Ocean. Check out the{' '}
           <a href="https://github.com/afgonullu/afarukdev-nextjs/">Github Repo</a>.
         </small>
       </div>
+      <div className="flex-col">
+        <h6>Services</h6>
+        <ul>
+          {navData.services
+            .filter((s) => s.title !== 'Services.Services')
+            .map((item) => {
+              return (
+                <li key={item.slug}>
+                  <Link href={`/pages/${item.slug}`}>{item.title?.split('.')[1]}</Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+      <div className="flex flex-col">
+        <h6>Sitemap</h6>
+        <ul>
+          {navData.authors.map((item) => {
+            return (
+              <li key={item.slug}>
+                <Link href={`/content/${item.slug}`}>{item.title}</Link>
+              </li>
+            );
+          })}
+          {navData.pages.map((item) => {
+            return (
+              <li key={item.slug}>
+                <Link href={`/pages/${item.slug}`}>{item.title}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <Image
+        src={profileImage}
+        alt="Abdullah Faruk"
+        width={200}
+        height={200}
+        className="hidden rounded-full lg:block"
+      />
     </footer>
   );
 };

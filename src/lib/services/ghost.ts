@@ -5,16 +5,19 @@ import ghostApi, { endpoints } from '../ghost.client';
 export interface ILandingContent {
   hero: {
     title: string;
+    icon: string;
     greeting: string;
     text: string;
   };
   aboutMe: {
     title: string;
+    icon: string;
     text: string;
     image: string;
   };
   services: {
     title: string;
+    icon: string;
     text: string;
     image: string;
   };
@@ -35,16 +38,19 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
   const content = {
     hero: {
       title: landingPosts.find((post) => post.title === 'heroTitle')?.plaintext as string,
+      icon: landingPosts.find((post) => post.title === 'heroTitle')?.feature_image as string,
       greeting: landingPosts.find((post) => post.title === 'heroGreeting')?.plaintext as string,
       text: landingPosts.find((post) => post.title === 'heroText')?.plaintext as string,
     },
     aboutMe: {
       title: landingPosts.find((post) => post.title === 'aboutMeTitle')?.plaintext as string,
+      icon: landingPosts.find((post) => post.title === 'aboutMeTitle')?.feature_image as string,
       text: landingPosts.find((post) => post.title === 'aboutMeText')?.html as string,
       image: landingPosts.find((post) => post.title === 'aboutMeText')?.feature_image as string,
     },
     services: {
       title: landingPosts.find((post) => post.title === 'servicesTitle')?.plaintext as string,
+      icon: landingPosts.find((post) => post.title === 'servicesTitle')?.feature_image as string,
       text: landingPosts.find((post) => post.title === 'servicesText')?.html as string,
       image: landingPosts.find((post) => post.title === 'servicesText')?.feature_image as string,
     },

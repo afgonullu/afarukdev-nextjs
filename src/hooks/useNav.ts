@@ -21,7 +21,19 @@ const useNav = () => {
     authors: authorsData.authors
       .filter((author) => author.name !== 'Landing')
       .map((author) => ({ title: author.name, slug: author.slug, svg: author.profile_image ?? '' })),
-    pages: pagesData.pages.map((page) => ({ title: page.title, slug: page.slug, svg: page.twitter_image ?? '' })),
+    pages: pagesData.pages
+      .filter((page) => !page.title?.startsWith('Services'))
+      .map((page) => ({ title: page.title, slug: page.slug, svg: page.twitter_image ?? '' })),
+    services: pagesData.pages
+      .filter((page) => page.title?.startsWith('Services'))
+      .map((page) => ({
+        title: page.title ?? '',
+        slug: page.slug,
+        image: page.feature_image ?? '',
+        cardBody: page.feature_image_caption ?? '',
+        svg: page.twitter_image ?? '',
+        tagline: page.twitter_title,
+      })),
   };
 
   const profileImage = authorsData.authors.find((author) => author.name === 'Landing')?.profile_image ?? '';
