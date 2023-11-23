@@ -2,8 +2,8 @@ import { cva } from 'class-variance-authority';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import useFooter from '../../hooks/useFooter';
-import useNav from '../../hooks/useNav';
+import useFooter from '../../../hooks/useFooter';
+import useNav from '../../../hooks/useNav';
 
 const FooterStyles = cva([
   'flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-start justify-around py-8 bg-gray-900 text-gray-50',
@@ -32,7 +32,7 @@ const Footer = () => {
         </small>
       </div>
       <div className="flex-col">
-        <h6>Services</h6>
+        <h6>Explore</h6>
         <ul>
           {navData.services
             .filter((s) => s.title !== 'Services.Services')

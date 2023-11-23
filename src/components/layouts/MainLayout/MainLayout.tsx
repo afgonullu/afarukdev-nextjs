@@ -2,8 +2,8 @@
 
 import { cva, VariantProps } from 'class-variance-authority';
 
-import Footer from '../../Footer/Footer';
-import Navbar from '../../Navbar/Navbar';
+import Footer from '../../LayoutComponents/Footer/Footer';
+import Navbar from '../../LayoutComponents/Navbar/Navbar';
 
 const MainLayoutStyles = cva('flex w-full flex-col min-h-screen');
 

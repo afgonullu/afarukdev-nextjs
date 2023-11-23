@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 
-import useNav from '../../hooks/useNav';
+import useNav from '../../../hooks/useNav';
 import Navbar from './Navbar';
 
 // Mock the useNav hook

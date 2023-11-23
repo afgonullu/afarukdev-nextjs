@@ -1,7 +1,6 @@
 'use-client';
 
 import {
-  Button as NextButton,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -20,9 +19,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import useNav from '../../hooks/useNav';
-import Button from '../Button/Button';
-import { paddingX } from '../layouts/consts';
+import useNav from '../../../hooks/useNav';
+import Button from '../../Button/Button';
+import { paddingX } from '../../layouts/consts';
 import HamburgerMenu from './HamburgerMenu';
 
 export const ChevronDown = ({ fill, size, height, width, ...props }) => {
@@ -74,7 +73,18 @@ const NavbarButtonSvgStyles = cva('mr-1');
 
 export interface INavbarProps extends VariantProps<typeof NavbarContainer> {}
 
-const ServicesDropdown = ({ services }) => {
+interface IServicesDropdownProps {
+  services: {
+    title: string;
+    slug: string;
+    image: string;
+    cardBody: string;
+    svg: string;
+    tagline: string;
+  }[];
+}
+
+const ServicesDropdown = ({ services }: IServicesDropdownProps) => {
   const button = services.find((item) => item.title === 'Services.Services');
   const elements = services.filter((item) => item.title !== 'Services.Services');
 
@@ -83,6 +93,8 @@ const ServicesDropdown = ({ services }) => {
   const closeDropdown = () => {
     setTimeout(() => setIsOpen(false), 20);
   };
+
+  if (!button || !elements) return null;
 
   return (
     <Dropdown isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>

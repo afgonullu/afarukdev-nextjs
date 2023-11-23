@@ -15,8 +15,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import brevoApi from '../../lib/brevo.client';
-import LandingSection from '../layouts/LandingSection/LandingSection';
+import brevoApi from '../../../lib/brevo.client';
+import LandingSection from '../../layouts/LandingSection/LandingSection';
 
 const defaultModalMessage = {
   title: 'Thank you!',

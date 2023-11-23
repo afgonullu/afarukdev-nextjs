@@ -32,7 +32,7 @@ const useNav = () => {
         image: page.feature_image ?? '',
         cardBody: page.feature_image_caption ?? '',
         svg: page.twitter_image ?? '',
-        tagline: page.twitter_title,
+        tagline: page.twitter_title ?? '',
       })),
   };
 

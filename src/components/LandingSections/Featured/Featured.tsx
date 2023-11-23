@@ -1,10 +1,10 @@
 import type { PostsOrPages } from '@tryghost/content-api';
 import { cva, VariantProps } from 'class-variance-authority';
 
+import ContentCard from '../../ContentCard/ContentCard';
 import LandingSection from '../../layouts/LandingSection/LandingSection';
-import FeaturedCard from './FeaturedCard/FeaturedCard';
 
-const FeaturedStyles = cva('max-w-full flex flex-wrap justify-center');
+const FeaturedStyles = cva('flex flex-wrap justify-center gap-4 py-4 md:px-4 2xl:px-0');
 
 export interface IFeaturedProps extends VariantProps<typeof FeaturedStyles> {
   posts: PostsOrPages;
@@ -15,7 +15,7 @@ const Featured = ({ posts }: IFeaturedProps) => {
     <LandingSection background="dark" title="Featured Articles" hasPadding imagePosition={null}>
       <div className={FeaturedStyles()}>
         {posts.map((post) => {
-          return <FeaturedCard key={post.slug} post={post} />;
+          return <ContentCard key={post.slug} post={post} />;
         })}
       </div>
     </LandingSection>
