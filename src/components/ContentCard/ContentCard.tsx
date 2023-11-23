@@ -1,5 +1,6 @@
 import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react';
 import { PostOrPage } from '@tryghost/content-api';
+import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -25,9 +26,10 @@ const ContentCard = ({ post }: IContentCardProps) => {
           height="20"
         />
       </CardHeader>
-      <CardBody className="relative h-full text-center text-xs text-gray-50">{post.excerpt}</CardBody>
-      <CardFooter className="z-10 flex flex-col items-center justify-center pb-8 text-center text-sm font-semibold text-gray-50">
-        {post.title}
+      <CardBody className="flex items-end justify-start" />
+      <CardFooter className="z-10 flex flex-col !items-start justify-start pb-8 text-sm font-semibold text-gray-50">
+        <small className="text-xs font-semibold text-gray-50">{dayjs(post.published_at).format('DD/MM/YYYY')}</small>
+        <p className="text-lg font-semibold text-gray-50">{post.title}</p>
       </CardFooter>
     </Card>
   );

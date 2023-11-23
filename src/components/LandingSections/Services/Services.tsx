@@ -21,7 +21,7 @@ const Services = ({ content }: IServicesProps) => {
   return (
     <LandingSection background="light" title={content.title} imagePosition={null} hasPadding>
       <div
-        className={cva(['prose max-w-max text-center text-gray-900'])()}
+        className={cva(['section_subtext max-w-max text-center text-2xl text-gray-900'])()}
         dangerouslySetInnerHTML={{ __html: content.text ?? '' }}
       />
       <div className="flex flex-wrap justify-center gap-4 py-4 md:px-4 2xl:px-0">

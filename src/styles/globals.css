@@ -107,4 +107,9 @@
     line-height: 1.5;
     letter-spacing: 0.5px;
   }
+
+  .section_subtext p {
+    @apply text-2xl;
+    line-height: 2;
+  }
 }

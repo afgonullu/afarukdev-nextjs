@@ -23,11 +23,12 @@ const ServiceCard = ({ service }: IServiceCardProps) => {
       className="relative h-[360px] min-w-[280px] hover:scale-105  sm:max-w-xs md:max-w-sm lg:max-w-[280px]"
     >
       <Image src={service.image} alt={service.title} fill className="object-cover brightness-[30%]" />
-      <CardHeader className="flex flex-col items-center text-lg font-bold text-gray-50">Explore →</CardHeader>
-      <CardBody className="relative h-full text-center text-xs text-gray-50">{service.cardBody}</CardBody>
-      <CardFooter className="z-10 flex flex-col items-center justify-center pb-8 text-center text-sm font-semibold text-gray-50">
-        {service.title.split('.')[1]}
-      </CardFooter>
+      <CardHeader className="flex flex-col items-center text-lg font-bold text-gray-50">
+        Explore {service.title.split('.')[1]} →
+      </CardHeader>
+      <CardBody className="relative flex h-full justify-end text-center text-xs text-gray-50">
+        {service.cardBody}
+      </CardBody>
     </Card>
   );
 };
