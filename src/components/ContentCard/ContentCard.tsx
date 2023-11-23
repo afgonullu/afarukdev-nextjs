@@ -8,7 +8,6 @@ interface IContentCardProps {
 }
 
 const ContentCard = ({ post }: IContentCardProps) => {
-  console.log({ post });
   return (
     <Card
       as={Link}

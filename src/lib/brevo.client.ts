@@ -26,9 +26,18 @@ const subToNewsletter = async (email: string) => {
   }
 };
 
-const submitContactForm = async (contactForm: any) => {
+const submitContactForm = async (contactForm) => {
+  const payload = {
+    email: contactForm.email,
+    attributes: {
+      ...contactForm,
+      WANT_NEWSLETTER: contactForm.NEWSLETTER,
+    },
+    updateEnabled: true,
+    listIds: contactForm.NEWSLETTER ? [6, 7] : [7],
+  };
   try {
-    const { data } = await brevoAxiosInstance.post('/contacts/', contactForm);
+    const { data } = await brevoAxiosInstance.post('/contacts/', payload);
 
     return data;
   } catch (error) {
