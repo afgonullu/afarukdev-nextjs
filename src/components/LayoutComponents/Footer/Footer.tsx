@@ -15,23 +15,28 @@ const Footer = () => {
 
   return (
     <footer className={FooterStyles()}>
-      <div className="flex max-w-sm flex-col items-center justify-between lg:items-start ">
-        <div className="mb-4 flex w-52 justify-between gap-2">
+      <div className="flex h-full max-w-sm flex-col items-center justify-between lg:items-start ">
+        <div className="mb-4 flex w-48 grow justify-between gap-6">
           {data.map((item) => {
             return (
               <a key={item.title} href={item.link} target="_blank" rel="noreferrer">
-                <Image src={item.svg} alt={item.text} width={40} height={40} className="hover:invert" />
+                <Image src={item.svg} alt={item.text} width={40} height={40} className="fill-secondary hover:invert" />
               </a>
             );
           })}
         </div>
-        <small>©2023 A Faruk Gonullu.</small>
-        <small>
-          Built with ❤️ and also with Next.js hosted on Vercel, Ghost CMS hosted on Digital Ocean. Check out the{' '}
-          <a href="https://github.com/afgonullu/afarukdev-nextjs/">Github Repo</a>.
-        </small>
+        <div className="flex flex-1 flex-col">
+          <small>© Copyright © 2023 Abdullah Faruk Gonullu</small>
+          <small>
+            Repository is publicly available. Check out the{' '}
+            <a className="underline" href="https://github.com/afgonullu/afarukdev-nextjs/">
+              Github Repo
+            </a>
+            .
+          </small>
+        </div>
       </div>
-      <div className="flex-col">
+      <div className="flex flex-col gap-6">
         <h6>Explore</h6>
         <ul>
           {navData.services
@@ -45,7 +50,7 @@ const Footer = () => {
             })}
         </ul>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-6">
         <h6>Sitemap</h6>
         <ul>
           {navData.authors.map((item) => {
