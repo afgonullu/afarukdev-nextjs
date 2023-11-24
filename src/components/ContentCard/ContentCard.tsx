@@ -15,7 +15,7 @@ const ContentCard = ({ post }: IContentCardProps) => {
       href={`/content/${post.primary_author?.slug}/${post.slug}`}
       key={post.slug}
       shadow="sm"
-      className="relative h-[360px] min-w-[280px] hover:scale-105  sm:max-w-xs md:max-w-sm lg:max-w-[280px]"
+      className="relative h-[360px] w-[320px] hover:scale-105"
     >
       <Image src={post.feature_image ?? ''} alt={post.title ?? ''} fill className="object-cover brightness-[35%]" />
       <CardHeader className="flex justify-end text-lg font-bold text-gray-50">

@@ -109,7 +109,7 @@
   }
 
   .section_subtext p {
-    @apply text-2xl;
+    @apply text-xl;
     line-height: 2;
   }
 }

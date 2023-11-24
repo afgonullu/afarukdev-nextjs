@@ -6,7 +6,7 @@ import useFooter from '../../../hooks/useFooter';
 import useNav from '../../../hooks/useNav';
 
 const FooterStyles = cva([
-  'flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-start justify-around py-8 bg-gray-900 text-gray-50',
+  'flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-start justify-around py-8 bg-gray-900 text-gray-50 border-t-3 border-t-secondary',
 ]);
 
 const Footer = () => {
@@ -26,7 +26,7 @@ const Footer = () => {
           })}
         </div>
         <div className="flex flex-1 flex-col">
-          <small>© Copyright © 2023 Abdullah Faruk Gonullu</small>
+          <small className="text-secondary">© Copyright © 2023 Abdullah Faruk Gonullu</small>
           <small>
             Repository is publicly available. Check out the{' '}
             <a className="underline" href="https://github.com/afgonullu/afarukdev-nextjs/">
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex flex-col gap-6">
-        <h6>Explore</h6>
+        <h6 className="text-secondary">Explore</h6>
         <ul>
           {navData.services
             .filter((s) => s.title !== 'Services.Services')
@@ -51,7 +51,7 @@ const Footer = () => {
         </ul>
       </div>
       <div className="flex flex-col gap-6">
-        <h6>Sitemap</h6>
+        <h6 className="text-secondary">Sitemap</h6>
         <ul>
           {navData.authors.map((item) => {
             return (
@@ -74,7 +74,7 @@ const Footer = () => {
         alt="Abdullah Faruk"
         width={200}
         height={200}
-        className="hidden rounded-full lg:block"
+        className="hidden rounded-full border-2 border-secondary shadow-md lg:block"
       />
     </footer>
   );

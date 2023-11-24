@@ -50,16 +50,16 @@ const LandingSection = ({
     {image ? (
       <>
         <div className="relative hidden overflow-hidden xl:flex xl:w-5/12">
-          <Image src={image} alt="Background of Landing Page" fill className="object-cover object-center" />
+          <Image src={image} alt="Background of Landing Page" fill className="object-cover object-top" />
         </div>
-        <div className="w-full flex-col py-8 xl:w-7/12">
-          <h4>{title}</h4>
+        <div className="w-full flex-col py-12 xl:w-7/12">
+          <h3 className="py-6">{title}</h3>
           {children}
         </div>
       </>
     ) : (
       <>
-        <h4>{title}</h4>
+        <h3 className="py-6">{title}</h3>
         {children}
       </>
     )}

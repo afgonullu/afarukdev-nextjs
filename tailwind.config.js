@@ -22,6 +22,9 @@ module.exports = {
       transparent: colors.transparent
     },
     extend: {
+      screens: {
+        '3xl': '1870px',
+      },
       colors: {
         primary: {
           500: "#0066ff",

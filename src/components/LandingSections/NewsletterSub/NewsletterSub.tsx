@@ -73,7 +73,7 @@ const NewsletterSub = () => {
   };
 
   return (
-    <LandingSection title="" background="secondary" image="/images/newsletter.jpg" imagePosition="right">
+    <LandingSection title="" background="primary" image="/images/newsletter.jpg" imagePosition="right">
       <div className="flex max-w-max flex-col justify-start text-center xl:text-end">
         <h4>Join the Newsletter</h4>
         <p>
@@ -100,7 +100,7 @@ const NewsletterSub = () => {
           />
           <Button
             radius="full"
-            className="bg-purple-500 px-12 font-semibold tracking-tight text-gray-50 hover:bg-purple-700 data-[hover]:opacity-100"
+            className="bg-purple-700 px-12 font-semibold tracking-tight text-gray-50 hover:bg-purple-900 data-[hover]:opacity-100"
             type="submit"
           >
             Subscribe

@@ -11,9 +11,9 @@ export interface IAboutMeProps extends VariantProps<typeof AboutMeStyles> {
 
 const AboutMe = ({ aboutMe }: IAboutMeProps) => {
   return (
-    <LandingSection background="light" title={aboutMe.title} image={aboutMe.image} imagePosition="left">
+    <LandingSection background="secondary" title={aboutMe.title} image={aboutMe.image} imagePosition="left">
       <div
-        className={cva(['prose max-w-max text-gray-900'])()}
+        className={cva(['section_subtext max-w-max text-2xl text-gray-900'])()}
         dangerouslySetInnerHTML={{ __html: aboutMe.text ?? '' }}
       />
     </LandingSection>

@@ -24,7 +24,7 @@ const Services = ({ content }: IServicesProps) => {
         className={cva(['section_subtext max-w-max text-center text-2xl text-gray-900'])()}
         dangerouslySetInnerHTML={{ __html: content.text ?? '' }}
       />
-      <div className="flex flex-wrap justify-center gap-4 py-4 md:px-4 2xl:px-0">
+      <div className="flex flex-wrap justify-center gap-4 py-4 md:px-4 2xl:px-16 3xl:px-0">
         {services
           .filter((s) => s.title !== 'Services.Services')
           .map((service) => (
