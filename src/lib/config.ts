@@ -3,6 +3,7 @@ const config = {
   key: process.env['NEXT_PUBLIC_CONTENT_API_KEY'],
   brevoUrl: process.env['NEXT_PUBLIC_BREVO_API_URL'],
   brevoKey: process.env['NEXT_PUBLIC_BREVO_API_KEY'],
+  googleAnalyticsId: process.env['NEXT_PUBLIC_GOOGLE_ANALYTICS_ID'],
 };
 
 export default config;
