@@ -1,8 +1,8 @@
-@import './exceptional.styles.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './exceptional.styles.css';
 
 @layer base {
   :root {
@@ -33,6 +33,10 @@
     font-size: 0.8rem;
     line-height: 1.5;
     letter-spacing: 1.25px;
+  }
+
+  a:hover {
+    @apply underline;
   }
 
   .title {

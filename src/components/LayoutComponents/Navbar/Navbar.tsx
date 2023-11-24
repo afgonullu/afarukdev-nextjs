@@ -24,7 +24,18 @@ import Button from '../../Button/Button';
 import { paddingX } from '../../layouts/consts';
 import HamburgerMenu from './HamburgerMenu';
 
-export const ChevronDown = ({ fill, size, height, width, ...props }) => {
+export const ChevronDown = ({
+  fill,
+  size,
+  height,
+  width,
+  ...props
+}: {
+  fill?: string;
+  size?: number;
+  height?: number;
+  width?: number;
+}) => {
   return (
     <svg
       fill="none"

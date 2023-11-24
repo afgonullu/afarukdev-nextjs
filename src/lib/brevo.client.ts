@@ -26,7 +26,14 @@ const subToNewsletter = async (email: string) => {
   }
 };
 
-const submitContactForm = async (contactForm) => {
+const submitContactForm = async (contactForm: {
+  email: string;
+  FIRSTNAME: string;
+  LASTNAME: string;
+  COMPANY: string;
+  NEWSLETTER: boolean;
+  MESSAGE: string;
+}) => {
   const payload = {
     email: contactForm.email,
     attributes: {

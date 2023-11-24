@@ -28,7 +28,7 @@ const defaultModalMessage = {
     'I have received your message! I will get back to you as soon as possible. In the meantime, feel free to check out my blog.',
 };
 
-export const contactFormSchema = z.object({
+const contactFormSchema = z.object({
   FIRSTNAME: z.string().min(2),
   LASTNAME: z.string().min(2),
   email: z.string().email(),
@@ -37,16 +37,17 @@ export const contactFormSchema = z.object({
   NEWSLETTER: z.boolean(),
 });
 
-const inputClassNames = {
-  label: 'text-secondary',
-  base: 'max-w-lg xl:max-w-xs py-2',
-  inputWrapper: 'bg-gray-50 data-[hover=true]:bg-gray-50 group-data-[focus=true]:bg-gray-50 text-gray-900 h-auto py-0',
-  input: 'bg-gray-50 text-gray-900 border-0 focus:ring-0',
-};
-
 const ContactPage = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [message, setMessage] = useState(defaultModalMessage);
+
+  const inputClassNames = {
+    label: '!text-secondary',
+    base: 'max-w-lg xl:max-w-xs py-2',
+    inputWrapper:
+      'bg-gray-50 data-[hover=true]:bg-gray-50 group-data-[focus=true]:bg-gray-50 text-gray-900 h-auto py-0',
+    input: 'bg-gray-50 text-gray-900 border-0 focus:ring-0',
+  };
 
   const {
     control,
