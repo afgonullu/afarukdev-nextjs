@@ -21,6 +21,7 @@ import { z } from 'zod';
 import contactBG from '../../../public/images/contact.jpg';
 import PageLayout from '../../components/layouts/PageLayout/PageLayout';
 import { submitContactForm } from '../../lib/brevo.client';
+import { sendMail } from '../../lib/nodeMailer.client';
 
 const defaultModalMessage = {
   title: 'Thank you!',
@@ -68,6 +69,7 @@ const ContactPage = () => {
 
   const onSubmit = async (values: z.infer<typeof contactFormSchema>) => {
     const result = await submitContactForm(values);
+    await sendMail(values);
 
     if (result.message) {
       setMessage({ title: 'There was an error :/', message: result.message });
