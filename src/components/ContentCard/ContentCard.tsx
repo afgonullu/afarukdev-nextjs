@@ -17,7 +17,13 @@ const ContentCard = ({ post }: IContentCardProps) => {
       shadow="sm"
       className="relative h-[360px] w-[320px] hover:scale-105"
     >
-      <Image src={post.feature_image ?? ''} alt={post.title ?? ''} fill className="object-cover brightness-[35%]" />
+      <Image
+        src={post.feature_image ?? ''}
+        alt={post.title ?? ''}
+        fill
+        className="object-cover brightness-[35%]"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
       <CardHeader className="flex justify-end text-lg font-bold text-gray-50">
         <Image
           alt="sss"

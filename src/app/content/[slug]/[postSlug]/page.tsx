@@ -14,6 +14,7 @@ const Post = async ({ params }: { params: { postSlug: string } }) => {
           alt={post.feature_image_alt || post.title || 'Background of Landing Page'}
           fill
           className="h-full object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <h1 className="z-10 bg-gray-50/60 p-2">{post.title}</h1>
       </div>

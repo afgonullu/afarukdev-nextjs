@@ -6,7 +6,7 @@ import useFooter from '../../../hooks/useFooter';
 import useNav from '../../../hooks/useNav';
 
 const FooterStyles = cva([
-  'flex flex-col lg:flex-row gap-4 items-center lg:items-start text-center lg:text-start justify-around py-8 bg-gray-900 text-gray-50 border-t-3 border-t-secondary',
+  'flex flex-col items-center justify-around gap-4 border-t-3 border-t-secondary bg-gray-900 py-8 text-center text-gray-50 lg:flex-row lg:items-start lg:text-start',
 ]);
 
 const Footer = () => {
@@ -69,13 +69,15 @@ const Footer = () => {
           })}
         </ul>
       </div>
-      <Image
-        src={profileImage}
-        alt="Abdullah Faruk"
-        width={200}
-        height={200}
-        className="hidden rounded-full border-2 border-secondary shadow-md lg:block"
-      />
+      {profileImage && (
+        <Image
+          src={profileImage}
+          alt="Abdullah Faruk"
+          width={200}
+          height={200}
+          className="hidden rounded-full border-2 border-secondary shadow-md lg:block"
+        />
+      )}
     </footer>
   );
 };

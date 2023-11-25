@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { paddingX } from '../consts';
 
-const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center px-8 xl:px-0'], {
+const LandingSectionStyles = cva(['flex h-full w-full items-center justify-start px-8 xl:px-0'], {
   variants: {
     background: {
       primary: 'bg-primary text-gray-50',
@@ -15,7 +15,7 @@ const LandingSectionStyles = cva(['flex w-full h-full justify-start items-center
       true: paddingX,
     },
     hasImage: {
-      false: 'flex-col py-8 justify-center',
+      false: 'flex-col justify-center py-8',
       true: 'items-stretch gap-8',
     },
     imagePosition: {
@@ -50,7 +50,13 @@ const LandingSection = ({
     {image ? (
       <>
         <div className="relative hidden overflow-hidden xl:flex xl:w-5/12">
-          <Image src={image} alt="Background of Landing Page" fill className="object-cover object-top" />
+          <Image
+            src={image}
+            alt="Background of Landing Page"
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
         <div className="w-full flex-col py-12 xl:w-7/12">
           <h3 className="py-6">{title}</h3>

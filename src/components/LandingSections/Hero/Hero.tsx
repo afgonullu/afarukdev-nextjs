@@ -19,10 +19,10 @@ const SvgBlob = () => (
 const heroStyles = {
   container: cva(['flex w-full justify-center xl:justify-end', paddingX]),
   hero: cva('flex flex-col'),
-  greeting: cva('text-base font-sans text-shadow-hero-title-sm mb-0 text-gray-50'),
-  title: cva('text-shadow-hero-title text-gray-50 whitespace-pre-wrap'),
-  description: cva('text-gray-900 whitespace-pre-wrap'),
-  ctaButtons: cva('flex justify-start items-center mt-2'),
+  greeting: cva('mb-0 font-sans text-base text-gray-50 text-shadow-hero-title-sm'),
+  title: cva('whitespace-pre-wrap text-gray-50 text-shadow-hero-title'),
+  description: cva('whitespace-pre-wrap text-gray-900'),
+  ctaButtons: cva('mt-2 flex items-center justify-start'),
 };
 
 export interface IHeroProps extends VariantProps<typeof heroStyles.hero> {
@@ -38,6 +38,8 @@ const Hero = ({ hero }: IHeroProps) => {
           alt="Background of Landing Page"
           fill
           className="-z-10 h-screen object-cover object-right-top"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          priority
         />
         <SvgBlob />
       </div>
