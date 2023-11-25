@@ -1,3 +1,5 @@
+'use server';
+
 import axios from 'axios';
 
 import config from './config';
@@ -11,7 +13,7 @@ const brevoAxiosInstance = axios.create({
   },
 });
 
-const subToNewsletter = async (email: string) => {
+export async function subToNewsletter(email: string) {
   try {
     const { data } = await brevoAxiosInstance.post('/contacts/', {
       email,
@@ -24,16 +26,16 @@ const subToNewsletter = async (email: string) => {
     }
     return { message: 'Something went wrong and we could not submit your form. Please try again later.' };
   }
-};
+}
 
-const submitContactForm = async (contactForm: {
+export async function submitContactForm(contactForm: {
   email: string;
   FIRSTNAME: string;
   LASTNAME: string;
   COMPANY: string;
   NEWSLETTER: boolean;
   MESSAGE: string;
-}) => {
+}) {
   const payload = {
     email: contactForm.email,
     attributes: {
@@ -53,11 +55,4 @@ const submitContactForm = async (contactForm: {
     }
     return { message: 'Something went wrong and we could not submit your form. Please try again later.' };
   }
-};
-
-const brevoApi = {
-  submitContactForm,
-  subToNewsletter,
-};
-
-export default brevoApi;
+}

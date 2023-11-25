@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import brevoApi from '../../../lib/brevo.client';
+import { subToNewsletter } from '../../../lib/brevo.client';
 import LandingSection from '../../layouts/LandingSection/LandingSection';
 
 const defaultModalMessage = {
@@ -58,7 +58,7 @@ const NewsletterSub = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const result = await brevoApi.subToNewsletter(values.email);
+    const result = await subToNewsletter(values.email);
 
     if (result.message) {
       setMessage({ title: 'There was an error :/', message: result.message });

@@ -20,7 +20,7 @@ import { z } from 'zod';
 
 import contactBG from '../../../public/images/contact.jpg';
 import PageLayout from '../../components/layouts/PageLayout/PageLayout';
-import brevoApi from '../../lib/brevo.client';
+import { submitContactForm } from '../../lib/brevo.client';
 
 const defaultModalMessage = {
   title: 'Thank you!',
@@ -67,7 +67,7 @@ const ContactPage = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof contactFormSchema>) => {
-    const result = await brevoApi.submitContactForm(values);
+    const result = await submitContactForm(values);
 
     if (result.message) {
       setMessage({ title: 'There was an error :/', message: result.message });
