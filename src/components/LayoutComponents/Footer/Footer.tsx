@@ -29,7 +29,7 @@ const Footer = () => {
           <small className="text-secondary">© Copyright © 2023 Abdullah Faruk Gonullu</small>
           <small>
             Repository is publicly available. Check out the{' '}
-            <a className="underline" href="https://github.com/afgonullu/afarukdev-nextjs/">
+            <a className="underline" target="_blank" href="https://bit.ly/3RfXi9t" rel="noreferrer">
               Github Repo
             </a>
             .
