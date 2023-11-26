@@ -19,7 +19,7 @@ const Post = async ({ params }: { params: { postSlug: string } }) => {
         <h1 className="z-10 bg-gray-50/60 p-2">{post.title}</h1>
       </div>
       <div
-        className={cva([paddingX])()}
+        className={cva(['max-w-4xl', paddingX])()}
         style={{ margin: '2rem' }}
         dangerouslySetInnerHTML={{ __html: post.html ?? '' }}
       />

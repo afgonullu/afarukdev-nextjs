@@ -16,10 +16,12 @@ const Page = async ({ params }: { params: { pageSlug: string } }) => {
           className="h-full object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <h1 className="z-10 bg-gray-50/60 p-2">{page.title}</h1>
+        <h1 className="z-10 bg-gray-50/60 p-2">
+          {page.title?.startsWith('Services') ? page.title.split('.')[1] : page.title}
+        </h1>
       </div>
       <div
-        className={cva([paddingX])()}
+        className={cva(['max-w-4xl', paddingX])()}
         style={{ margin: '2rem' }}
         dangerouslySetInnerHTML={{ __html: page.html ?? '' }}
       />
