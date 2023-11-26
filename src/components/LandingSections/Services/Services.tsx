@@ -7,7 +7,7 @@ import { ILandingContent } from '../../../lib/services/ghost';
 import LandingSection from '../../layouts/LandingSection/LandingSection';
 import ContentCard from '../../ServiceCard/ServiceCard';
 
-const ServicesStyles = cva('w-full flex flex-col justify-start');
+const ServicesStyles = cva('flex w-full flex-col justify-start');
 
 export interface IServicesProps extends VariantProps<typeof ServicesStyles> {
   content: ILandingContent['services'];

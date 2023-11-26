@@ -57,11 +57,11 @@ export const ChevronDown = ({
   );
 };
 
-const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', paddingX], {
+const NavbarContainer = cva(['flex h-20 w-full items-end justify-between pb-2', paddingX], {
   variants: {
     intent: {
       transparent: 'bg-transparent text-gray-50',
-      primary: 'bg-gray-900 text-gray-50 border-b-2 border-b-secondary',
+      primary: 'border-b-2 border-b-secondary bg-gray-900 text-gray-50',
       light: 'bg-gray-50/60 text-gray-900',
     },
     marginBottom: {
@@ -72,11 +72,11 @@ const NavbarContainer = cva(['flex justify-between w-full h-20 items-end pb-2', 
   },
 });
 
-const NavbarButtonStyles = cva('flex items-center cursor-pointer !opacity-100', {
+const NavbarButtonStyles = cva('flex cursor-pointer items-center !opacity-100', {
   variants: {
     intent: {
-      even: 'hover:filter hover:drop-shadow-navbar-svg-0',
-      odd: 'hover:filter hover:drop-shadow-navbar-svg-1',
+      even: 'hover:drop-shadow-navbar-svg-0 hover:filter',
+      odd: 'hover:drop-shadow-navbar-svg-1 hover:filter',
     },
   },
 });

@@ -2,7 +2,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 
 import { paddingX } from '../consts';
 
-const PageLayoutStyles = cva(['flex w-full grow flex-col py-4 justify-center items-center', paddingX], {
+const PageLayoutStyles = cva(['flex w-full grow flex-col items-center justify-center py-4', paddingX], {
   variants: {
     background: {
       primary: 'bg-primary text-gray-50',

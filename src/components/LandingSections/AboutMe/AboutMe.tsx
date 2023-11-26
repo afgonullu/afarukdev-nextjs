@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ILandingContent } from '../../../lib/services/ghost';
 import LandingSection from '../../layouts/LandingSection/LandingSection';
 
-const AboutMeStyles = cva('w-full flex flex-col justify-start');
+const AboutMeStyles = cva('flex w-full flex-col justify-start');
 
 export interface IAboutMeProps extends VariantProps<typeof AboutMeStyles> {
   aboutMe: ILandingContent['aboutMe'];

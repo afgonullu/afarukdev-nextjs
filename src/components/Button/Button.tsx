@@ -5,15 +5,15 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { useRouter } from 'next/navigation';
 
 const ButtonStyles = cva(
-  'w-48 h-10 flex justify-center items-center font-semibold tracking-tight rounded-full mr-4 data-[hover]:opacity-100',
+  'mr-4 flex h-10 w-48 items-center justify-center rounded-full font-semibold tracking-tight data-[hover]:opacity-100',
   {
     variants: {
       intent: {
-        primary: 'bg-primary text-gray-50 hover:bg-gray-900 hover:text-secondary cva-primary',
-        secondary: 'bg-secondary text-gray-50 hover:text-secondary hover:bg-gray-50 cva-secondary',
+        primary: 'bg-primary text-gray-50 hover:bg-gray-900 hover:text-secondary',
+        secondary: 'bg-secondary text-gray-50 hover:bg-gray-50 hover:text-secondary',
         outline:
-          'bg-transparent border-4 border-secondary hover:bg-secondary text-gray-50 text-shadow-hero-title-sm hover:text-shadow-hero-title cva-outline',
-        accent: 'bg-gray-50/60 text-secondary border-secondary border hover:text-shadow-hero-title-sm cva-accent',
+          'border-4 border-secondary bg-transparent text-gray-50 text-shadow-hero-title-sm hover:bg-secondary hover:text-shadow-hero-title',
+        accent: 'border border-secondary bg-gray-50/60 text-secondary hover:text-shadow-hero-title-sm',
       },
       /// ... other variants
     },

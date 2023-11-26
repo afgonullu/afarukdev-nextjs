@@ -2,7 +2,7 @@ import type { PostOrPage } from '@tryghost/content-api';
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 
-const FeaturedCardStyles = cva('absolute w-full h-full flex flex-col justify-between items-center p-4 z-10');
+const FeaturedCardStyles = cva('absolute z-10 flex h-full w-full flex-col items-center justify-between p-4');
 
 export interface IFeaturedCardProps extends VariantProps<typeof FeaturedCardStyles> {
   post: PostOrPage;

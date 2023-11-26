@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority';
 
-const BaseTemplateStyles = cva('p-4 flex justify-center items-center w-60', {
+const BaseTemplateStyles = cva('flex w-60 items-center justify-center p-4', {
   variants: {
     intent: {
       primary: 'bg-primary text-gray-50',

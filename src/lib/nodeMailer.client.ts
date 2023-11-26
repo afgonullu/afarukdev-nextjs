@@ -4,7 +4,8 @@ import nodemailer from 'nodemailer';
 
 import config from './config';
 
-export async function sendMail(otpText) {
+// eslint-disable-next-line import/prefer-default-export
+export async function sendMail(otpText: unknown) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -20,9 +21,9 @@ export async function sendMail(otpText) {
     text: JSON.stringify(otpText),
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  transporter.sendMail(mailOptions, (error) => {
     if (error) {
-      throw new Error(error);
+      throw new Error(JSON.stringify(error));
     } else {
       return true;
     }
