@@ -21,11 +21,12 @@ export async function sendMail(otpText: unknown) {
     text: JSON.stringify(otpText),
   };
 
-  transporter.sendMail(mailOptions, (error) => {
-    if (error) {
-      throw new Error(JSON.stringify(error));
-    } else {
-      return true;
-    }
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(true);
+    });
   });
 }
