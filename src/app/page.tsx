@@ -1,3 +1,6 @@
+import Image from 'next/image';
+
+import landingBG from '../../public/images/landing_background.png';
 import AboutMe from '../components/LandingSections/AboutMe/AboutMe';
 import Featured from '../components/LandingSections/Featured/Featured';
 import Hero from '../components/LandingSections/Hero/Hero';
@@ -16,13 +19,23 @@ const Home = async () => {
   const { content, posts } = await getData();
 
   return (
-    <main className="flex h-full w-full grow flex-col">
-      <Hero hero={content.hero} />
-      <Featured posts={posts} />
-      <NewsletterSub />
-      <AboutMe aboutMe={content.aboutMe} />
-      <Services content={content.services} />
-    </main>
+    <div className="home_container">
+      <Image
+        src={landingBG}
+        alt="Background of Landing Page"
+        fill
+        className="h-screen w-full object-cover object-center"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+        priority
+      />
+      <main className="flex h-full w-full grow flex-col bg-gray-900">
+        <Hero hero={content.hero} />
+        <Featured posts={posts} />
+        <NewsletterSub />
+        <Services content={content.services} />
+        <AboutMe aboutMe={content.aboutMe} />
+      </main>
+    </div>
   );
 };
 

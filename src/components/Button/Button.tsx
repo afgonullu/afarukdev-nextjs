@@ -9,11 +9,11 @@ const ButtonStyles = cva(
   {
     variants: {
       intent: {
-        primary: 'bg-primary text-gray-50 hover:bg-gray-900 hover:text-secondary',
+        primary: 'bg-primary text-gray-50 hover:border-primary hover:bg-gray-50 hover:text-gray-900',
         secondary: 'bg-secondary text-gray-50 hover:bg-gray-50 hover:text-secondary',
         outline:
-          'border-4 border-secondary bg-transparent text-gray-50 text-shadow-hero-title-sm hover:bg-secondary hover:text-shadow-hero-title',
-        accent: 'border border-secondary bg-gray-50/60 text-secondary hover:text-shadow-hero-title-sm',
+          'border-4 border-secondary bg-secondary/10 text-gray-900 text-shadow-hero-title-sm hover:bg-secondary hover:text-shadow-hero-title',
+        accent: 'border border-secondary bg-gray-900 text-secondary hover:text-shadow-hero-title-sm',
       },
       /// ... other variants
     },

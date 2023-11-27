@@ -24,7 +24,7 @@
   }
 
   mark {
-    @apply bg-gray-50/60 leading-8;
+    @apply bg-gray-50/70 leading-8;
   }
 
   a,
@@ -35,9 +35,9 @@
     letter-spacing: 1.25px;
   }
 
-  a:hover {
+  /* a:hover {
     @apply underline;
-  }
+  } */
 
   .title {
     @apply font-sans;
@@ -116,4 +116,46 @@
     @apply text-xl;
     line-height: 2;
   }
+
+  .home_container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 80%, rgba(0, 26, 51, 0.8) 86%, #001a33 100%);
+  }
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* .section_image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 89%,
+        rgba(0, 26, 51, 0.7) 92%,
+        rgba(0, 26, 51, 1) 95%,
+        #001a33 100%
+      ),
+      linear-gradient(to top, transparent 89%, rgba(0, 26, 51, 0.7) 92%, rgba(0, 26, 51, 1) 95%, #001a33 100%),
+      linear-gradient(to right, transparent 89%, rgba(0, 26, 51, 0.7) 92%, rgba(0, 26, 51, 1) 95%, #001a33 100%),
+      linear-gradient(to left, transparent 89%, rgba(0, 26, 51, 0.7) 92%, rgba(0, 26, 51, 1) 95%, #001a33 100%);
+  } */
 }
+
+/*
+    background: linear-gradient(to bottom, transparent 80%, rgba(0, 26, 51, 0.7) 90%, #001a33 100%),
+      linear-gradient(to top, transparent 80%, rgba(0, 26, 51, 0.7) 90%, #001a33 100%),
+      linear-gradient(to right, transparent 80%, rgba(0, 26, 51, 0.7) 90%, #001a33 100%),
+      linear-gradient(to left, transparent 80%, rgba(0, 26, 51, 0.7) 90%, #001a33 100%);
+*/

@@ -182,7 +182,7 @@ const Navbar = () => {
       </NavbarContent>
       <NavbarContent justify="start">
         <NavbarItem className="hidden md:flex">
-          <Button intent="outline" src="/contact" text="Get in Touch" />
+          <Button intent="accent" src="/contact" text="Get in Touch" />
         </NavbarItem>
       </NavbarContent>
 

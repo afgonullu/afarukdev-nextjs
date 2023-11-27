@@ -1,21 +1,35 @@
 import { cva, VariantProps } from 'class-variance-authority';
 import Image from 'next/image';
 
-import { paddingX } from '../consts';
+import { marginX } from '../consts';
 
-const LandingSectionStyles = cva(['flex h-full w-full items-center justify-start px-8 xl:px-0'], {
+const LandingTitleStyles = cva(['py-6'], {
   variants: {
-    background: {
-      primary: 'bg-primary text-gray-50',
-      secondary: 'bg-secondary text-gray-50',
+    titleColor: {
+      primary: ' text-primary',
+      secondary: 'text-secondary',
+      light: 'text-primary underline decoration-secondary',
+      dark: 'text-gray-50',
+    },
+  },
+});
+
+const LandingSectionStyles = cva(['mx-8 my-12 flex h-full items-center justify-start overflow-hidden'], {
+  variants: {
+    titleColor: {
+      primary: ' border-primary bg-primary',
+      secondary: ' border-secondary bg-secondary',
       light: 'bg-gray-50 text-gray-900',
       dark: 'bg-gray-900 text-gray-50',
     },
-    hasPadding: {
-      true: paddingX,
+    hasBorder: {
+      true: 'rounded-2xl border shadow-md',
+    },
+    hasMargin: {
+      true: marginX,
     },
     hasImage: {
-      false: 'flex-col justify-center py-8',
+      false: 'flex-col justify-center',
       true: 'items-stretch gap-8',
     },
     imagePosition: {
@@ -24,7 +38,7 @@ const LandingSectionStyles = cva(['flex h-full w-full items-center justify-start
     },
   },
   defaultVariants: {
-    hasPadding: false,
+    hasMargin: false,
     imagePosition: 'left',
   },
 });
@@ -32,8 +46,9 @@ const LandingSectionStyles = cva(['flex h-full w-full items-center justify-start
 export interface ILandingSectionProps extends VariantProps<typeof LandingSectionStyles> {
   title: string;
   children: React.ReactNode;
-  background: 'primary' | 'secondary' | 'light' | 'dark';
-  hasPadding?: boolean;
+  titleColor: 'primary' | 'secondary' | 'light' | 'dark';
+  hasMargin?: boolean;
+  hasBorder?: boolean;
   image?: string;
   imagePosition: 'left' | 'right' | null;
 }
@@ -41,12 +56,13 @@ export interface ILandingSectionProps extends VariantProps<typeof LandingSection
 const LandingSection = ({
   title,
   children,
-  background,
-  hasPadding = false,
+  titleColor,
+  hasMargin = false,
+  hasBorder = false,
   image,
   imagePosition,
 }: ILandingSectionProps) => (
-  <div className={LandingSectionStyles({ background, hasPadding, hasImage: !!image, imagePosition })}>
+  <div className={LandingSectionStyles({ hasMargin, hasBorder, hasImage: !!image, imagePosition, titleColor })}>
     {image ? (
       <>
         <div className="relative hidden overflow-hidden xl:flex xl:w-5/12">
@@ -54,18 +70,18 @@ const LandingSection = ({
             src={image}
             alt="Background of Landing Page"
             fill
-            className="object-cover object-top"
+            className=" object-cover object-top"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-        <div className="w-full flex-col py-12 xl:w-7/12">
-          <h3 className="py-6">{title}</h3>
+        <div className="flex-col py-12 xl:w-7/12">
+          <h3 className={LandingTitleStyles({ titleColor })}>{title}</h3>
           {children}
         </div>
       </>
     ) : (
       <>
-        <h3 className="py-6">{title}</h3>
+        <h3 className={LandingTitleStyles({ titleColor })}>{title}</h3>
         {children}
       </>
     )}

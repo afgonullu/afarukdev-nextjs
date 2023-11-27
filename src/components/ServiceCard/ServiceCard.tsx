@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -19,22 +19,23 @@ const ServiceCard = ({ service }: IServiceCardProps) => {
       as={Link}
       href={`/pages/${service.slug}`}
       key={service.slug}
-      shadow="sm"
-      className="relative h-[360px] min-w-[280px] hover:scale-105  sm:max-w-xs md:max-w-sm lg:max-w-[300px] 3xl:max-w-[280px]"
+      className="relative h-[360px] min-w-[280px] bg-transparent hover:scale-105 hover:bg-transparent sm:max-w-xs md:max-w-sm lg:max-w-[300px] 3xl:max-w-[280px]"
     >
       <Image
         src={service.image}
         alt={service.title}
         fill
-        className="object-cover brightness-[30%]"
+        className="object-cover brightness-50 grayscale backdrop-blur-[2px]"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
-      <CardHeader className="flex flex-col items-center text-lg font-bold tracking-tighter text-gray-50">
-        Explore {service.title.split('.')[1]} →
+      <CardHeader className="flex flex-col items-center bg-primary/40 text-lg font-bold tracking-tighter text-gray-50">
+        <div className="w-full">
+          <p>Explore {service.title.split('.')[1]} →</p>
+        </div>
       </CardHeader>
-      <CardBody className="relative flex h-full justify-end text-center text-xs text-gray-50">
+      <CardFooter className="absolute bottom-0 flex h-full justify-end bg-gray-900/40 text-center text-xs text-gray-50">
         {service.cardBody}
-      </CardBody>
+      </CardFooter>
     </Card>
   );
 };

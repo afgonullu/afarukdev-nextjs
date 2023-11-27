@@ -19,9 +19,9 @@ const Services = ({ content }: IServicesProps) => {
   } = useNav();
 
   return (
-    <LandingSection background="light" title={content.title} imagePosition={null} hasPadding>
+    <LandingSection titleColor="dark" title={content.title} imagePosition={null} hasMargin>
       <div
-        className={cva(['section_subtext max-w-max text-center text-2xl text-gray-900'])()}
+        className={cva(['section_subtext max-w-max text-center text-2xl'])()}
         dangerouslySetInnerHTML={{ __html: content.text ?? '' }}
       />
       <div className="flex flex-wrap justify-center gap-4 py-4 md:px-4 2xl:px-16 3xl:px-0">

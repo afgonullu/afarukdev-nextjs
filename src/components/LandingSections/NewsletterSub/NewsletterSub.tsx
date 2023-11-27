@@ -73,8 +73,8 @@ const NewsletterSub = () => {
   };
 
   return (
-    <LandingSection title="" background="primary" image="/images/newsletter.jpg" imagePosition="right">
-      <div className="flex max-w-max flex-col justify-start text-center xl:text-end">
+    <LandingSection title="" titleColor="primary" image="/images/newsletter.jpg" imagePosition="right" hasBorder>
+      <div className="flex max-w-max flex-col justify-start text-center text-gray-50 xl:text-end">
         <h4>Join the Newsletter</h4>
         <p>
           Every day, I craft articles and generate content with the sole intent of delivering value to you. By joining,
@@ -91,16 +91,16 @@ const NewsletterSub = () => {
               label: 'none',
               base: 'max-w-xs',
               inputWrapper:
-                'bg-gray-50 data-[hover=true]:bg-gray-50 group-data-[focus=true]:bg-gray-50 text-purple-700 h-auto py-0',
-              input: 'bg-gray-50 text-purple-700 border-0 focus:ring-0',
+                'bg-gray-50 data-[hover=true]:bg-gray-50 group-data-[focus=true]:bg-gray-50 text-red h-auto py-0',
+              input: 'bg-gray-50 text-red border-0 focus:ring-0',
             }}
             type="email"
             placeholder="you@example.com"
-            startContent={<MailIcon className="pointer-events-none shrink-0 text-2xl text-purple-700" />}
+            startContent={<MailIcon className="pointer-events-none shrink-0 text-2xl text-red" />}
           />
           <Button
             radius="full"
-            className="bg-purple-700 px-12 font-semibold tracking-tight text-gray-50 hover:bg-purple-900 data-[hover]:opacity-100"
+            className="bg-red px-12 font-semibold tracking-tight text-gray-50 hover:bg-red-700 data-[hover]:opacity-100"
             type="submit"
           >
             Subscribe
