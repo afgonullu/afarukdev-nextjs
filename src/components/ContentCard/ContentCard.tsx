@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react';
+import { Card, CardBody, CardFooter } from '@nextui-org/react';
 import { PostOrPage } from '@tryghost/content-api';
 import dayjs from 'dayjs';
 import Image from 'next/image';
