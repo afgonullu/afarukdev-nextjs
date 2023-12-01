@@ -28,7 +28,7 @@ const Hero = ({ hero }: IHeroProps) => {
           <mark className={cn(heroStyles.description())}>{hero.text}</mark>
         </p>
         <div id="cta-buttons" className={cn(heroStyles.ctaButtons())}>
-          <Button intent="primary" src="/resume" text="Learn More" />
+          <Button intent="primary" src="/pages/process" text="Learn More" />
           {/* <Button intent="accent" onClick={() => {}} text="Resume" /> */}
         </div>
       </div>

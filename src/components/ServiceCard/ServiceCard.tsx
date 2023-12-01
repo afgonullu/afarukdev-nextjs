@@ -33,7 +33,7 @@ const ServiceCard = ({ service }: IServiceCardProps) => {
           <p>Explore {service.title.split('.')[1]} →</p>
         </div>
       </CardHeader>
-      <CardFooter className="absolute bottom-0 flex h-full justify-end bg-gray-900/40 text-center text-xs text-gray-50">
+      <CardFooter className="absolute bottom-0 flex h-full items-end justify-end bg-gray-900/40 text-center text-xs text-gray-50">
         {service.cardBody}
       </CardFooter>
     </Card>

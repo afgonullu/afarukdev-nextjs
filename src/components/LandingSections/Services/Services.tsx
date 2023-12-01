@@ -26,7 +26,7 @@ const Services = ({ content }: IServicesProps) => {
       />
       <div className="flex flex-wrap justify-center gap-4 py-4 md:px-4 2xl:px-16 3xl:px-0">
         {services
-          .filter((s) => s.title !== 'Services.Services')
+          .filter((s) => s.title !== 'Services.Expertise')
           .map((service) => (
             <ContentCard key={service.slug} service={service} />
           ))}

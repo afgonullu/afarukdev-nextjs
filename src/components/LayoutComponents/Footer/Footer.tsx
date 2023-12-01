@@ -40,7 +40,7 @@ const Footer = () => {
         <h6 className="text-secondary">Explore</h6>
         <ul>
           {navData.services
-            .filter((s) => s.title !== 'Services.Services')
+            .filter((s) => s.title !== 'Services.Expertise')
             .map((item) => {
               return (
                 <li key={item.slug}>

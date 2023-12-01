@@ -96,8 +96,8 @@ interface IServicesDropdownProps {
 }
 
 const ServicesDropdown = ({ services }: IServicesDropdownProps) => {
-  const button = services.find((item) => item.title === 'Services.Services');
-  const elements = services.filter((item) => item.title !== 'Services.Services');
+  const button = services.find((item) => item.title === 'Services.Expertise');
+  const elements = services.filter((item) => item.title !== 'Services.Expertise');
 
   const [isOpen, setIsOpen] = useState(false);
 
