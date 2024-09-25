@@ -57,7 +57,7 @@ export const ChevronDown = ({
   );
 };
 
-const NavbarContainer = cva(['flex h-20 w-full items-end justify-between pb-2', paddingX], {
+const NavbarContainer = cva(['flex h-20 w-full items-start justify-center pb-2', paddingX], {
   variants: {
     intent: {
       transparent: 'bg-transparent text-gray-50',
@@ -72,7 +72,7 @@ const NavbarContainer = cva(['flex h-20 w-full items-end justify-between pb-2', 
   },
 });
 
-const NavbarButtonStyles = cva('flex cursor-pointer items-center !opacity-100', {
+const NavbarButtonStyles = cva('flex cursor-pointer items-center justify-center !opacity-100', {
   variants: {
     intent: {
       even: 'hover:drop-shadow-navbar-svg-0 hover:filter',
@@ -171,6 +171,7 @@ const Navbar = () => {
       onMenuOpenChange={toggleMenu}
       classNames={{
         base: NavbarContainer({ intent: dynamicIntent, marginBottom: pathname === '/' }),
+        wrapper: 'justify-center',
       }}
       maxWidth="full"
       isBlurred={false}
@@ -180,21 +181,22 @@ const Navbar = () => {
       <NavbarContent className="block sm:hidden" justify="start">
         <NavbarMenuToggle icon={<HamburgerMenu />} aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
       </NavbarContent>
-      <NavbarContent justify="start">
+      {/* <NavbarContent justify="start">
         <NavbarItem className="hidden md:flex">
           <Button intent="accent" src="/contact" text="Get in Touch" />
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
 
-      <NavbarContent justify="center">
+      <NavbarContent justify="center" className="border-t-8 border-gray-50 pt-4">
         <NavbarBrand className={NavbarButtonStyles({ intent: 'odd' })}>
           <Link href="/">
-            <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} />
+            {/* <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} /> */}
+            <p className="text-7xl font-bold text-gray-50">devAF</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent justify="end" className="hidden items-center gap-8 sm:flex">
+      {/* <NavbarContent justify="end" className="hidden items-center gap-8 sm:flex">
         <ServicesDropdown services={data.services} />
         {data.authors.map((item, index) => (
           <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
@@ -212,9 +214,9 @@ const Navbar = () => {
             </Link>
           </NavbarItem>
         ))}
-      </NavbarContent>
+      </NavbarContent> */}
 
-      <NavbarMenu>
+      {/* <NavbarMenu>
         {data.authors.map((item) => (
           <NavbarMenuItem key={item.slug}>
             <Link className="w-full text-gray-900" href={`/${item.slug}`}>
@@ -229,7 +231,7 @@ const Navbar = () => {
             </Link>
           </NavbarMenuItem>
         ))}
-      </NavbarMenu>
+      </NavbarMenu> */}
     </NextNavbar>
   );
 };
