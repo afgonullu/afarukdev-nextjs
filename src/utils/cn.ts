@@ -2,8 +2,10 @@ import classNames from 'classnames';
 import { extendTailwindMerge } from 'tailwind-merge';
 
 const twMerge = extendTailwindMerge({
-  classGroups: {
-    'text-shadow': ['text-shadow-hero-title', 'text-shadow-hero-title-sm'],
+  override: {
+    classGroups: {
+      shadow: ['text-shadow-hero-title', 'text-shadow-hero-title-sm'],
+    },
   },
 });
 

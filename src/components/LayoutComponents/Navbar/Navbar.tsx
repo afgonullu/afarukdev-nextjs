@@ -1,63 +1,18 @@
 'use-client';
 
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  Navbar as NextNavbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-} from '@nextui-org/react';
+import { Navbar as NextNavbar, NavbarBrand, NavbarContent, NavbarMenuToggle, NavbarItem } from '@nextui-org/react';
 import { cva, VariantProps } from 'class-variance-authority';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { motion, useTransform, useScroll } from 'framer-motion';
 
+import Image from 'next/image';
 import useNav from '../../../hooks/useNav';
-import Button from '../../Button/Button';
 import { paddingX } from '../../layouts/consts';
 import HamburgerMenu from './HamburgerMenu';
 
-export const ChevronDown = ({
-  fill,
-  size,
-  height,
-  width,
-  ...props
-}: {
-  fill?: string;
-  size?: number;
-  height?: number;
-  width?: number;
-}) => {
-  return (
-    <svg
-      fill="none"
-      height={size || height || 24}
-      viewBox="0 0 24 24"
-      width={size || width || 24}
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path
-        d="m19.92 8.95-6.52 6.52c-.77.77-2.03.77-2.8 0L4.08 8.95"
-        stroke={fill}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeMiterlimit={10}
-        strokeWidth={1.5}
-      />
-    </svg>
-  );
-};
-
-const NavbarContainer = cva(['flex h-20 w-full items-start justify-center pb-2', paddingX], {
+const NavbarContainer = cva(['flex h-max w-full items-start justify-center pb-2', paddingX], {
   variants: {
     intent: {
       transparent: 'bg-transparent text-gray-50',
@@ -84,68 +39,6 @@ const NavbarButtonSvgStyles = cva('mr-1');
 
 export interface INavbarProps extends VariantProps<typeof NavbarContainer> {}
 
-interface IServicesDropdownProps {
-  services: {
-    title: string;
-    slug: string;
-    image: string;
-    cardBody: string;
-    svg: string;
-    tagline: string;
-  }[];
-}
-
-const ServicesDropdown = ({ services }: IServicesDropdownProps) => {
-  const button = services.find((item) => item.title === 'Services.Expertise');
-  const elements = services.filter((item) => item.title !== 'Services.Expertise');
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeDropdown = () => {
-    setTimeout(() => setIsOpen(false), 20);
-  };
-
-  if (!button || !elements) return null;
-
-  return (
-    <Dropdown isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>
-      <DropdownTrigger>
-        <NavbarItem
-          className={NavbarButtonStyles({ intent: 'even' })}
-          onMouseOver={() => setIsOpen(true)}
-          onMouseLeave={closeDropdown}
-        >
-          <Link href={`/pages/${button.slug}`} className="flex items-center text-gray-50">
-            <Image src={button.svg} alt={button.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
-            <p>{button.title.split('.')[1]}</p>
-          </Link>
-        </NavbarItem>
-      </DropdownTrigger>
-      <DropdownMenu
-        aria-label="ACME features"
-        className="w-[340px]"
-        itemClasses={{
-          base: 'gap-4',
-        }}
-        onMouseOver={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
-      >
-        {elements.map((item) => (
-          <DropdownItem
-            as={Link}
-            href={`/pages/${item.slug}`}
-            key={item.title}
-            description={item.tagline}
-            startContent={<Image src={item.svg} alt={item.title} width={60} height={60} className="" />}
-          >
-            {item.title.split('.')[1]}
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
-    </Dropdown>
-  );
-};
-
 const Navbar = () => {
   const pathname = usePathname();
   const { data, isLoading } = useNav();
@@ -153,6 +46,18 @@ const Navbar = () => {
   const [scrollTop, setScrollTop] = useState(0);
   const [dynamicIntent, setDynamicIntent] = useState<'transparent' | 'primary' | 'light'>(
     pathname === '/' ? 'transparent' : 'primary'
+  );
+
+  const { scrollY } = useScroll();
+  const backgroundColor = useTransform(
+    scrollY,
+    [0, 200],
+    ['rgba(0, 0, 0, 0)', 'rgba(0, 26, 51, 1)'] // Adjust colors as needed
+  );
+  const borderBottom = useTransform(
+    scrollY,
+    [0, 200],
+    ['0px solid rgba(0, 0, 0, 0)', '2px solid rgba(0, 204, 153, 1)'] // Adjust colors as needed
   );
 
   useEffect(() => {
@@ -166,57 +71,68 @@ const Navbar = () => {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
-    <NextNavbar
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={toggleMenu}
-      classNames={{
-        base: NavbarContainer({ intent: dynamicIntent, marginBottom: pathname === '/' }),
-        wrapper: 'justify-center',
+    <motion.div
+      style={{
+        backgroundColor: pathname === '/' ? backgroundColor : 'rgba(0, 0, 0, 0)',
+        borderBottom,
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        marginBottom: pathname === '/' ? '8rem' : '0',
       }}
-      maxWidth="full"
-      isBlurred={false}
-      disableScrollHandler={false}
-      onScrollPositionChange={(position) => setScrollTop(position)}
     >
-      <NavbarContent className="block sm:hidden" justify="start">
-        <NavbarMenuToggle icon={<HamburgerMenu />} aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
-      </NavbarContent>
-      {/* <NavbarContent justify="start">
+      <NextNavbar
+        height="auto"
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={toggleMenu}
+        classNames={{
+          base: NavbarContainer({ intent: dynamicIntent, marginBottom: false }),
+          wrapper: 'flex flex-col justify-center',
+        }}
+        maxWidth="full"
+        isBlurred={false}
+        disableScrollHandler={false}
+        onScrollPositionChange={(position) => setScrollTop(position)}
+      >
+        <NavbarContent className="block sm:hidden" justify="start">
+          <NavbarMenuToggle icon={<HamburgerMenu />} aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
+        </NavbarContent>
+        {/* <NavbarContent justify="start">
         <NavbarItem className="hidden md:flex">
           <Button intent="accent" src="/contact" text="Get in Touch" />
         </NavbarItem>
       </NavbarContent> */}
 
-      <NavbarContent justify="center" className="border-t-8 border-gray-50 pt-4">
-        <NavbarBrand className={NavbarButtonStyles({ intent: 'odd' })}>
-          <Link href="/">
-            {/* <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} /> */}
-            <p className="text-7xl font-bold text-gray-50">devAF</p>
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
-
-      {/* <NavbarContent justify="end" className="hidden items-center gap-8 sm:flex">
-        <ServicesDropdown services={data.services} />
-        {data.authors.map((item, index) => (
-          <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
-            <Link href={`/content/${item.slug}`} className="flex items-center text-gray-50">
-              <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
-              <p>{item.title}</p>
+        <NavbarContent justify="center" className="border-t-8 border-gray-50 pt-4">
+          <NavbarBrand className={NavbarButtonStyles({ intent: 'odd' })}>
+            <Link href="/">
+              {/* <Image src="/logo_white.svg" alt="abdullah faruk gönüllü" width={60} height={60} /> */}
+              <p className="text-7xl font-bold text-gray-50">devAF</p>
             </Link>
-          </NavbarItem>
-        ))}
-        {data.pages.map((item, index) => (
-          <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
-            <Link href={`/pages/${item.slug}`} className="flex items-center text-gray-50">
-              <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
-              <p>{item.title}</p>
-            </Link>
-          </NavbarItem>
-        ))}
-      </NavbarContent> */}
+          </NavbarBrand>
+        </NavbarContent>
 
-      {/* <NavbarMenu>
+        <NavbarContent justify="end" className="hidden items-center gap-8 sm:flex">
+          {/* <ServicesDropdown services={data.services} /> */}
+          {data.authors.map((item, index) => (
+            <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
+              <Link href={`/content/${item.slug}`} className="flex items-center text-gray-50">
+                <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+                <p>{item.title}</p>
+              </Link>
+            </NavbarItem>
+          ))}
+          {data.pages.map((item, index) => (
+            <NavbarItem key={item.slug} className={NavbarButtonStyles({ intent: index % 2 ? 'even' : 'odd' })}>
+              <Link href={`/pages/${item.slug}`} className="flex items-center text-gray-50">
+                <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+                <p>{item.title}</p>
+              </Link>
+            </NavbarItem>
+          ))}
+        </NavbarContent>
+
+        {/* <NavbarMenu>
         {data.authors.map((item) => (
           <NavbarMenuItem key={item.slug}>
             <Link className="w-full text-gray-900" href={`/${item.slug}`}>
@@ -232,7 +148,8 @@ const Navbar = () => {
           </NavbarMenuItem>
         ))}
       </NavbarMenu> */}
-    </NextNavbar>
+      </NextNavbar>
+    </motion.div>
   );
 };
 

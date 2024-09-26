@@ -5,18 +5,16 @@
     "airbnb/hooks",
     "plugin:@next/next/recommended",
     "prettier",
-    "plugin:tailwindcss/recommended"
+    "plugin:tailwindcss/recommended",
   ],
-  "plugins": ["simple-import-sort", "import", "tailwindcss"],
+  "plugins": ["import", "tailwindcss"],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
   },
   "globals": {
-    "React": "readonly"
+    "React": "readonly",
   },
   "rules": {
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
@@ -24,8 +22,8 @@
       "error",
       {
         "namedComponents": "arrow-function",
-        "unnamedComponents": "arrow-function"
-      }
+        "unnamedComponents": "arrow-function",
+      },
     ],
     "react/jsx-props-no-spreading": "off",
     "import/extensions": [
@@ -34,10 +32,10 @@
         "js": "never",
         "jsx": "never",
         "ts": "never",
-        "tsx": "never"
-      }
+        "tsx": "never",
+      },
     ],
     "arrow-body-style": "off",
-    "react/require-default-props": "off"
-  }
+    "react/require-default-props": "off",
+  },
 }
