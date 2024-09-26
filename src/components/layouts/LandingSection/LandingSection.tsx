@@ -14,7 +14,7 @@ const LandingTitleStyles = cva(['py-6'], {
   },
 });
 
-const LandingSectionStyles = cva(['mx-8 my-12 flex h-full items-center justify-start overflow-hidden'], {
+const LandingSectionStyles = cva(['mx-8 my-4 flex h-full items-center justify-start overflow-hidden'], {
   variants: {
     titleColor: {
       primary: ' border-primary bg-primary',

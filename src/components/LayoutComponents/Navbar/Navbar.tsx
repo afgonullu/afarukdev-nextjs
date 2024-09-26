@@ -1,6 +1,14 @@
 'use-client';
 
-import { Navbar as NextNavbar, NavbarBrand, NavbarContent, NavbarMenuToggle, NavbarItem } from '@nextui-org/react';
+import {
+  Navbar as NextNavbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarMenuToggle,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+} from '@nextui-org/react';
 import { cva, VariantProps } from 'class-variance-authority';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -77,17 +85,17 @@ const Navbar = () => {
         borderBottom,
         position: 'sticky',
         top: 0,
-        zIndex: 1000,
         marginBottom: pathname === '/' ? '8rem' : '0',
+        zIndex: 40,
       }}
     >
       <NextNavbar
-        height="auto"
+        height="8rem"
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={toggleMenu}
         classNames={{
           base: NavbarContainer({ intent: dynamicIntent, marginBottom: false }),
-          wrapper: 'flex flex-col justify-center',
+          wrapper: 'flex sm:flex-col justify-center',
         }}
         maxWidth="full"
         isBlurred={false}
@@ -132,22 +140,24 @@ const Navbar = () => {
           ))}
         </NavbarContent>
 
-        {/* <NavbarMenu>
-        {data.authors.map((item) => (
-          <NavbarMenuItem key={item.slug}>
-            <Link className="w-full text-gray-900" href={`/${item.slug}`}>
-              {item.title}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-        {data.pages.map((item) => (
-          <NavbarMenuItem key={item.slug}>
-            <Link className="w-full text-gray-900" href={`/${item.slug}`}>
-              {item.title}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu> */}
+        <NavbarMenu className="z-50 px-0">
+          {data.authors.map((item) => (
+            <NavbarMenuItem key={item.slug} className="flex justify-start gap-2 p-4 hover:bg-gray-900/20">
+              <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+              <Link className="w-full text-gray-900" href={`/content/${item.slug}`}>
+                {item.title}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+          {data.pages.map((item) => (
+            <NavbarMenuItem key={item.slug} className="flex justify-start gap-2 p-4 hover:bg-gray-900/20">
+              <Image src={item.svg} alt={item.slug} width={20} height={20} className={NavbarButtonSvgStyles()} />
+              <Link className="w-full text-gray-900" href={`/pages/${item.slug}`}>
+                {item.title}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
       </NextNavbar>
     </motion.div>
   );

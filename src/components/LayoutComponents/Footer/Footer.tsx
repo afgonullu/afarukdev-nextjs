@@ -6,7 +6,7 @@ import useFooter from '../../../hooks/useFooter';
 import useNav from '../../../hooks/useNav';
 
 const FooterStyles = cva([
-  'flex flex-col items-center justify-around gap-4 border-t-3 border-t-secondary bg-gray-900 py-8 text-center text-gray-50 lg:flex-row lg:items-start lg:text-start',
+  'flex flex-col items-center justify-around gap-4 border-t-3 border-t-secondary bg-gray-900 pb-40 pt-8 text-center text-gray-50 lg:flex-row lg:items-start lg:text-start',
 ]);
 
 const Footer = () => {

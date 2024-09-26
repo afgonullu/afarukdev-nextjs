@@ -6,7 +6,7 @@ export interface ILandingContent {
   hero: {
     title: string;
     icon: string;
-    greeting: string;
+    greeting: any;
     text: string;
   };
   aboutMe: {
@@ -39,7 +39,7 @@ const getLandingPosts = async (): Promise<ILandingContent> => {
     hero: {
       title: landingPosts.find((post) => post.title === 'heroTitle')?.plaintext as string,
       icon: landingPosts.find((post) => post.title === 'heroTitle')?.feature_image as string,
-      greeting: landingPosts.find((post) => post.title === 'heroGreeting')?.plaintext as string,
+      greeting: landingPosts.find((post) => post.title === 'heroGreeting')?.html,
       text: landingPosts.find((post) => post.title === 'heroText')?.plaintext as string,
     },
     aboutMe: {

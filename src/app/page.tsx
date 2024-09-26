@@ -28,12 +28,12 @@ const Home = async () => {
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
         priority
       />
-      <main className="flex h-full w-full grow flex-col bg-gray-900">
+      <main className="flex size-full grow flex-col bg-gray-900">
         <Hero hero={content.hero} />
-        <Featured posts={posts} />
-        <NewsletterSub />
         <Services content={content.services} />
         <AboutMe aboutMe={content.aboutMe} />
+        <NewsletterSub />
+        <Featured posts={posts} />
       </main>
     </div>
   );
