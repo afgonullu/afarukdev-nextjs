@@ -6,7 +6,7 @@ import useFooter from '../../../hooks/useFooter';
 import useNav from '../../../hooks/useNav';
 
 const FooterStyles = cva([
-  'flex flex-col items-center justify-around gap-4 border-t-3 border-t-secondary bg-gray-900 pb-40 pt-8 text-center text-gray-50 lg:flex-row lg:items-start lg:text-start',
+  'flex flex-col items-center justify-around gap-4 border-t-3 border-t-secondary bg-gray-900 px-5 pb-40 pt-8 text-center text-gray-50 lg:flex-row lg:items-start lg:text-start',
 ]);
 
 const Footer = () => {
@@ -39,15 +39,13 @@ const Footer = () => {
       <div className="flex flex-col gap-6">
         <h6 className="text-secondary">Explore</h6>
         <ul>
-          {navData.services
-            .filter((s) => s.title !== 'Services.Expertise')
-            .map((item) => {
-              return (
-                <li key={item.slug}>
-                  <Link href={`/pages/${item.slug}`}>{item.title?.split('.')[1]}</Link>
-                </li>
-              );
-            })}
+          {navData.latestPosts.map((item) => {
+            return (
+              <li key={item.slug}>
+                <Link href={`/content/${item.author}/${item.slug}`}>{item.title}</Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="flex flex-col gap-6">

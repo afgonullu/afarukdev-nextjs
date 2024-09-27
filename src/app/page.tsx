@@ -10,13 +10,12 @@ import ghost from '../lib/services/ghost';
 
 const getData = async () => {
   const content = await ghost.getLandingPosts();
-  const posts = await ghost.getPosts({ featured: true });
 
-  return { content, posts };
+  return { content };
 };
 
 const Home = async () => {
-  const { content, posts } = await getData();
+  const { content } = await getData();
 
   return (
     <div className="home_container">
@@ -32,8 +31,8 @@ const Home = async () => {
         <Hero hero={content.hero} />
         <Services content={content.services} />
         <AboutMe aboutMe={content.aboutMe} />
+        <Featured />
         <NewsletterSub />
-        <Featured posts={posts} />
       </main>
     </div>
   );

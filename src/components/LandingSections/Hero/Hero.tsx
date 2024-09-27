@@ -12,12 +12,12 @@ import typescript from '../../../../public/images/svgs/typescript.svg';
 import langchain from '../../../../public/images/svgs/langchain.svg';
 
 const heroStyles = {
-  container: cva(['z-10 flex w-full justify-center xl:justify-end', paddingX]),
+  container: cva(['z-10 mx-auto flex w-full max-w-7xl justify-center', paddingX]),
   hero: cva('flex flex-col'),
   greeting: cva('mb-0 flex gap-2 font-sans text-base text-gray-900 text-shadow-hero-title-sm'),
   title: cva('whitespace-pre-wrap text-gray-900 text-shadow-hero-title'),
   description: cva('whitespace-pre-wrap text-gray-900'),
-  ctaButtons: cva('mt-2 flex items-center justify-start'),
+  ctaButtons: cva('mt-2 flex items-center justify-center'),
 };
 
 export interface IHeroProps extends VariantProps<typeof heroStyles.hero> {

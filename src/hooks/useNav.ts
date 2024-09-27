@@ -15,8 +15,37 @@ const useNav = () => {
     isLoading: isPagesLoading,
   } = useSWR<{ pages: PostsOrPages }>('pages', () => fetcher(`/ghost/api/content/pages/`));
 
-  const isLoading = isAuthorsLoading || isPagesLoading;
-  const error = authorsError || pagesError;
+  const {
+    data: postsData = { posts: [] },
+    error: postsError,
+    isLoading: isPostsLoading,
+  } = useSWR<{ posts: PostsOrPages }>('posts', () =>
+    fetcher(`/ghost/api/content/posts/`, {
+      params: {
+        include: 'authors',
+        limit: 5,
+        filter: 'primary_author:Projects,primary_author:Reflections',
+        order: 'published_at DESC',
+      },
+    })
+  );
+
+  const {
+    data: featuredData = { posts: [] },
+    error: featuredError,
+    isLoading: isFeaturedLoading,
+  } = useSWR<{ posts: PostsOrPages }>('postsFeatured', () =>
+    fetcher(`/ghost/api/content/posts/`, {
+      params: {
+        include: 'authors',
+        limit: 5,
+        filter: 'featured:true',
+      },
+    })
+  );
+
+  const isLoading = isAuthorsLoading || isPagesLoading || isPostsLoading;
+  const error = authorsError || pagesError || postsError;
   const data = {
     authors: authorsData.authors
       .filter((author) => author.name !== 'Landing')
@@ -34,6 +63,16 @@ const useNav = () => {
         svg: page.twitter_image ?? '',
         tagline: page.twitter_title ?? '',
       })),
+    latestPosts: postsData.posts.map((post) => ({
+      author: post.authors?.[0]?.name?.toLocaleLowerCase(),
+      title: post.title,
+      slug: post.slug,
+      image: post.feature_image ?? '',
+      cardBody: post.feature_image_caption ?? '',
+      svg: post.twitter_image ?? '',
+      tagline: post.twitter_title ?? '',
+    })),
+    featuredPosts: featuredData.posts,
   };
 
   const profileImage = authorsData.authors.find((author) => author.name === 'Landing')?.profile_image ?? '';
