@@ -74,7 +74,7 @@ const NewsletterSub = () => {
 
   return (
     <LandingSection title="" titleColor="primary" image="/images/newsletter.jpg" imagePosition="right" hasBorder>
-      <div className="flex max-w-max flex-col justify-start text-center text-gray-50 xl:text-end">
+      <div className="flex max-w-max flex-col justify-start px-4 text-center text-gray-50 xl:text-end">
         <h4>Join the Newsletter</h4>
         <p>
           Every day, I craft articles and generate content with the sole intent of delivering value to you. By joining,

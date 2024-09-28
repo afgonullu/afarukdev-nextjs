@@ -14,10 +14,12 @@ const AboutMe = ({ aboutMe }: IAboutMeProps) => {
   return (
     <LandingSection titleColor="light" title={aboutMe.title} image={aboutMe.image} imagePosition="left" hasBorder>
       <div
-        className={cva(['section_subtext max-w-max text-2xl text-gray-900'])()}
+        className={cva(['section_subtext max-w-max px-4 text-2xl text-gray-900'])()}
         dangerouslySetInnerHTML={{ __html: aboutMe.text ?? '' }}
       />
-      <Link href="/pages/about-me">Learn More →</Link>
+      <Link className="section_subtext max-w-max px-4 text-gray-900" href="/pages/about-me">
+        Learn More →
+      </Link>
     </LandingSection>
   );
 };

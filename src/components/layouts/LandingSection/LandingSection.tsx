@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { marginX } from '../consts';
 
-const LandingTitleStyles = cva(['py-6'], {
+const LandingTitleStyles = cva(['px-4 py-6'], {
   variants: {
     titleColor: {
       primary: ' text-primary',

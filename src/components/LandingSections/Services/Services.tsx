@@ -5,7 +5,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import useNav from '../../../hooks/useNav';
 import { ILandingContent } from '../../../lib/services/ghost';
 import LandingSection from '../../layouts/LandingSection/LandingSection';
-import ContentCard from '../../ServiceCard/ServiceCard';
+import ServiceCard from '../../ServiceCard/ServiceCard';
 
 const ServicesStyles = cva('flex w-full flex-col justify-start');
 
@@ -28,7 +28,7 @@ const Services = ({ content }: IServicesProps) => {
         {services
           .filter((s) => s.title !== 'Services.Expertise')
           .map((service) => (
-            <ContentCard key={service.slug} service={service} />
+            <ServiceCard key={service.slug} service={service} />
           ))}
       </div>
     </LandingSection>

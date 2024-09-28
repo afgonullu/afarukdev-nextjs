@@ -44,8 +44,8 @@ const useNav = () => {
     })
   );
 
-  const isLoading = isAuthorsLoading || isPagesLoading || isPostsLoading;
-  const error = authorsError || pagesError || postsError;
+  const isLoading = isAuthorsLoading || isPagesLoading || isPostsLoading || isFeaturedLoading;
+  const error = authorsError || pagesError || postsError || featuredError;
   const data = {
     authors: authorsData.authors
       .filter((author) => author.name !== 'Landing')
